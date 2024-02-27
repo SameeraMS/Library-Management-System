@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Launcher extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(this.getClass().getResource("/view/studentForm.fxml"));
+        Parent root = FXMLLoader.load(this.getClass().getResource("/view/login_form.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.centerOnScreen();

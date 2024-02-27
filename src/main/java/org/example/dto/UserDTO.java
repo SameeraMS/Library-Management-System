@@ -1,7 +1,5 @@
-package org.example.entity;
+package org.example.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import lombok.*;
 
 @NoArgsConstructor
@@ -9,12 +7,8 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@Entity
-public class User {
-
+public class UserDTO {
     String name;
-
-    @Id
     String email;
     String password;
 }

@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.controller.RegisterFormController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane fx:id="root" prefHeight="630.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.RegisterFormController">
+   <children>
+      <Label layoutX="348.0" layoutY="57.0" text="SIGN UP">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUsername" layoutX="293.0" layoutY="208.0" onAction="#usernameOnAction" prefHeight="38.0" prefWidth="256.0" promptText="Username" />
+      <ComboBox fx:id="cmbType" layoutX="345.0" layoutY="143.0" prefWidth="150.0" promptText="Select" />
+      <TextField fx:id="txtEmail" layoutX="292.0" layoutY="262.0" onAction="#emailOnAction" prefHeight="38.0" prefWidth="256.0" promptText="Email" />
+      <TextField fx:id="txtPassword" layoutX="292.0" layoutY="315.0" onAction="#passwordOnAction" prefHeight="38.0" prefWidth="256.0" promptText="Password" />
+      <TextField fx:id="txtRePassword" layoutX="292.0" layoutY="370.0" prefHeight="38.0" prefWidth="256.0" promptText="Re-enter Password" />
+      <Button layoutX="387.0" layoutY="451.0" mnemonicParsing="false" onAction="#signUpOnAction" text="Sign up" />
+      <Label layoutX="292.0" layoutY="496.0" text="Already Have Account..? " />
+      <Label layoutX="437.0" layoutY="496.0" onMouseClicked="#loginOnAction" text="Log in" />
+   </children>
 </AnchorPane>
