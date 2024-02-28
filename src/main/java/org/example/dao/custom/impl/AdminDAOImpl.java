@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class AdminDAOImpl implements AdminDAO {
     @Override
@@ -50,4 +51,28 @@ public class AdminDAOImpl implements AdminDAO {
         session.close();
         return admin;
     }
+
+    @Override
+    public List<Admin> getAll() throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Admin> adminList = session.createQuery("FROM Admin").list();
+        transaction.commit();
+        session.close();
+        return adminList;
+    }
+
+    @Override
+    public String generateNextId() throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Object object = session.createQuery("SELECT COUNT(id) FROM Admin").uniqueResult();
+        transaction.commit();
+        session.close();
+
+        int id = Integer.parseInt(object.toString());
+        return "A" + (id + 1);
+
+    }
+
 }

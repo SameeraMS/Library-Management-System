@@ -10,11 +10,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.AdminBO;
+import org.example.bo.custom.UserBO;
 import org.example.bo.custom.impl.AdminBOImpl;
 import org.example.dto.AdminDTO;
+import org.example.dto.UserDTO;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 
 public class RegisterFormController {
     public AnchorPane root;
@@ -24,7 +27,8 @@ public class RegisterFormController {
     public TextField txtPassword;
     public TextField txtRePassword;
 
-    AdminBO adminBoimpl = (AdminBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
+    AdminBO adminBoImpl = (AdminBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
+    UserBO userBoImpl = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
     public void initialize() {
         cmbType.getItems().addAll("Admin", "User");
@@ -45,20 +49,29 @@ public class RegisterFormController {
         String password = txtPassword.getText();
         String rePassword = txtRePassword.getText();
 
-        if (type.equals("Admin")) {
-            if (username.isEmpty() || email.isEmpty() || password.isEmpty() || rePassword.isEmpty()) {
-                new Alert(Alert.AlertType.ERROR, "All fields are required").show();
-            } else if (!password.equals(rePassword)) {
-                new Alert(Alert.AlertType.ERROR, "Password does not match").show();
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || rePassword.isEmpty() || type.isEmpty()) {
+            new Alert(Alert.AlertType.ERROR, "All fields are required").show();
+        } else if (!password.equals(rePassword)) {
+            new Alert(Alert.AlertType.ERROR, "Password does not match").show();
+        } else {
+
+            if (type.equals("User")) {
+                try {
+                    userBoImpl.save(new UserDTO(username, email, password));
+                    new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             } else {
                 try {
-                    adminBoimpl.save(new AdminDTO("001", username, email, password));
+                    String nextId = adminBoImpl.generateNextId();
+                    adminBoImpl.save(new AdminDTO(nextId, username, email, password));
                     new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
                 } catch (Exception e) {
                     new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
                 }
             }
-            }
+        }
     }
 
     public void passwordOnAction(ActionEvent actionEvent) {

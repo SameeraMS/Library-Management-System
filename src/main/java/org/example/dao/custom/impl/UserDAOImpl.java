@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
 
@@ -50,5 +51,27 @@ public class UserDAOImpl implements UserDAO {
         transaction.commit();
         session.close();
         return user;
+    }
+
+    @Override
+    public List<User> getAll() throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<User> userList = session.createQuery("FROM User").list();
+        transaction.commit();
+        session.close();
+        return userList;
+    }
+
+    @Override
+    public String generateNextId() throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Object object = session.createQuery("SELECT COUNT(id) FROM User").uniqueResult();
+        transaction.commit();
+        session.close();
+
+        int id = Integer.parseInt(object.toString());
+        return "A" + (id + 1);
     }
 }

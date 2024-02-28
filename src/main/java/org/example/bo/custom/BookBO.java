@@ -5,8 +5,10 @@ import org.example.dao.CrudDAO;
 import org.example.dto.AdminDTO;
 import org.example.dto.BookDTO;
 import org.example.entity.Book;
+import org.example.entity.User;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface BookBO extends SuperBO {
     boolean save(BookDTO dto) throws SQLException, ClassNotFoundException;
@@ -15,4 +17,6 @@ public interface BookBO extends SuperBO {
 
     boolean delete(String id) throws SQLException, ClassNotFoundException;
     BookDTO search(String id) throws SQLException, ClassNotFoundException;
+    List<BookDTO> getAll() throws SQLException, ClassNotFoundException;
+    String generateNextId() throws SQLException, ClassNotFoundException;
 }

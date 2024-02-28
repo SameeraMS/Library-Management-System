@@ -7,6 +7,8 @@ import org.example.dto.BookDTO;
 import org.example.entity.Book;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookBOImpl implements BookBO {
 
@@ -30,5 +32,20 @@ public class BookBOImpl implements BookBO {
     public BookDTO search(String id) throws SQLException, ClassNotFoundException {
         Book search = bookDaoImpl.search(id);
         return new BookDTO(search.getId(),search.getTitle(),search.getAuthor(),search.getGenre(),search.getStatus());
+    }
+
+    @Override
+    public List<BookDTO> getAll() throws SQLException, ClassNotFoundException {
+        List<Book> all = bookDaoImpl.getAll();
+        List<BookDTO> list = new ArrayList<>();
+        for (Book book : all) {
+            list.add(new BookDTO(book.getId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus()));
+        }
+        return list;
+    }
+
+    @Override
+    public String generateNextId() throws SQLException, ClassNotFoundException {
+        return bookDaoImpl.generateNextId();
     }
 }

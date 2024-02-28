@@ -7,6 +7,8 @@ import org.example.dto.UserDTO;
 import org.example.entity.User;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserBOImpl implements UserBO {
 
@@ -30,5 +32,21 @@ public class UserBOImpl implements UserBO {
     public UserDTO search(String id) throws SQLException, ClassNotFoundException {
         User search = userDaoImpl.search(id);
         return new UserDTO(search.getName(), search.getEmail(), search.getPassword());
+    }
+
+    @Override
+    public List<UserDTO> getAll() throws SQLException, ClassNotFoundException {
+        List<User> all = userDaoImpl.getAll();
+        List<UserDTO> userDTOS = new ArrayList<>();
+
+        for (User user : all) {
+            userDTOS.add(new UserDTO(user.getName(), user.getEmail(), user.getPassword()));
+        }
+        return userDTOS;
+    }
+
+    @Override
+    public String generateNextId() throws SQLException, ClassNotFoundException {
+        return userDaoImpl.generateNextId();
     }
 }

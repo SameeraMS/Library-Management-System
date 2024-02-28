@@ -7,6 +7,8 @@ import org.example.dto.AdminDTO;
 import org.example.entity.Admin;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminBOImpl implements AdminBO {
 
@@ -30,5 +32,21 @@ public class AdminBOImpl implements AdminBO {
     public AdminDTO search(String id) throws SQLException, ClassNotFoundException {
         Admin search = adminDaoImpl.search(id);
         return new AdminDTO(search.getId(),search.getName(),search.getEmail(),search.getPassword());
+    }
+
+    @Override
+    public List<AdminDTO> getAll() throws SQLException, ClassNotFoundException {
+        List<Admin> all = adminDaoImpl.getAll();
+        List<AdminDTO> adminDTOS = new ArrayList<>();
+
+        for (Admin admin : all) {
+            adminDTOS.add(new AdminDTO(admin.getId(),admin.getName(),admin.getEmail(),admin.getPassword()));
+        }
+        return adminDTOS;
+    }
+
+    @Override
+    public String generateNextId() throws SQLException, ClassNotFoundException {
+        return adminDaoImpl.generateNextId();
     }
 }
