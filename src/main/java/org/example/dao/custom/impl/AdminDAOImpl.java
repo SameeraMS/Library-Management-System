@@ -15,18 +15,12 @@ public class AdminDAOImpl implements AdminDAO {
 
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        try {
-            session.save(ent);
+
+            session.persist(ent);
             transaction.commit();
-            return true;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            return false;
-        } finally {
             session.close();
-        }
+            return true;
+
     }
 
     @Override

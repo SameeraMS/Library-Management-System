@@ -9,6 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+
 @Entity
 public class Admin {
     @Id
