@@ -12,29 +12,42 @@ import java.sql.SQLException;
 public class AdminDAOImpl implements AdminDAO {
     @Override
     public boolean save(Admin ent) throws SQLException, ClassNotFoundException {
-
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-
-            session.persist(ent);
-            transaction.commit();
-            session.close();
-            return true;
+        session.persist(ent);
+        transaction.commit();
+        session.close();
+        return true;
 
     }
 
     @Override
     public boolean update(Admin ent) throws SQLException, ClassNotFoundException {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(ent);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.remove(id);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
     public Admin search(String id) throws SQLException, ClassNotFoundException {
-        return null;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Admin admin = session.get(Admin.class, id);
+        transaction.commit();
+        session.close();
+        return admin;
     }
 }
