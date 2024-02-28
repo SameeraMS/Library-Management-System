@@ -33,7 +33,12 @@ public class BranchBOImpl implements BranchBO {
     @Override
     public BranchDTO search(String id) throws SQLException, ClassNotFoundException {
         Branch search = branchDaoImpl.search(id);
-        return new BranchDTO(search.getId(),search.getAddress());
+
+        if (search == null) {
+            return null;
+        } else {
+            return new BranchDTO(search.getId(),search.getAddress());
+        }
     }
 
     @Override
@@ -41,10 +46,14 @@ public class BranchBOImpl implements BranchBO {
         List<Branch> all = branchDaoImpl.getAll();
         List<BranchDTO> branchDTOS = new ArrayList<>();
 
-        for (Branch branch : all) {
-            branchDTOS.add(new BranchDTO(branch.getId(),branch.getAddress()));
+        if (all == null) {
+            return null;
+        } else {
+            for (Branch branch : all) {
+                branchDTOS.add(new BranchDTO(branch.getId(),branch.getAddress()));
+            }
+            return branchDTOS;
         }
-        return branchDTOS;
     }
 
     @Override

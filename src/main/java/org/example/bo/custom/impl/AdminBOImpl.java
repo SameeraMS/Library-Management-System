@@ -31,7 +31,12 @@ public class AdminBOImpl implements AdminBO {
     @Override
     public AdminDTO search(String id) throws SQLException, ClassNotFoundException {
         Admin search = adminDaoImpl.search(id);
-        return new AdminDTO(search.getId(),search.getName(),search.getEmail(),search.getPassword());
+
+        if (search == null) {
+            return null;
+        } else {
+            return new AdminDTO(search.getId(),search.getName(),search.getEmail(),search.getPassword());
+        }
     }
 
     @Override
@@ -39,10 +44,15 @@ public class AdminBOImpl implements AdminBO {
         List<Admin> all = adminDaoImpl.getAll();
         List<AdminDTO> adminDTOS = new ArrayList<>();
 
-        for (Admin admin : all) {
-            adminDTOS.add(new AdminDTO(admin.getId(),admin.getName(),admin.getEmail(),admin.getPassword()));
+        if (all == null) {
+            return null;
+        }else {
+            for (Admin admin : all) {
+                adminDTOS.add(new AdminDTO(admin.getId(),admin.getName(),admin.getEmail(),admin.getPassword()));
+            }
+            return adminDTOS;
         }
-        return adminDTOS;
+
     }
 
     @Override
