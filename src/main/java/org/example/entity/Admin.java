@@ -13,8 +13,7 @@ import lombok.*;
 @Entity
 public class Admin {
     @Id
-    String id;
-    String name;
     String email;
+    String name;
     String password;
 }

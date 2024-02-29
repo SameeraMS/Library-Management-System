@@ -64,8 +64,7 @@ public class RegisterFormController {
                 }
             } else {
                 try {
-                    String nextId = adminBoImpl.generateNextId();
-                    adminBoImpl.save(new AdminDTO(nextId, username, email, password));
+                    adminBoImpl.save(new AdminDTO(username, email, password));
                     new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
                 } catch (Exception e) {
                     new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
