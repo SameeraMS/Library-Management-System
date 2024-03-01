@@ -15,12 +15,12 @@ public class BookBOImpl implements BookBO {
     BookDAO bookDaoImpl = (BookDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BOOK);
     @Override
     public boolean save(BookDTO dto) throws SQLException, ClassNotFoundException {
-        return bookDaoImpl.save(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus()));
+        return bookDaoImpl.save(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus(),dto.getBranch()));
     }
 
     @Override
     public boolean update(BookDTO dto) throws SQLException, ClassNotFoundException {
-        return bookDaoImpl.update(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus()));
+        return bookDaoImpl.update(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus(),dto.getBranch()));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class BookBOImpl implements BookBO {
         if (search == null) {
             return null;
         } else {
-            return new BookDTO(search.getId(),search.getTitle(),search.getAuthor(),search.getGenre(),search.getStatus());
+            return new BookDTO(search.getId(),search.getTitle(),search.getAuthor(),search.getGenre(),search.getStatus(),search.getBranch());
         }
     }
 
@@ -48,7 +48,7 @@ public class BookBOImpl implements BookBO {
             return null;
         } else {
             for (Book book : all) {
-                list.add(new BookDTO(book.getId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus()));
+                list.add(new BookDTO(book.getId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus(),book.getBranch()));
             }
             return list;
         }

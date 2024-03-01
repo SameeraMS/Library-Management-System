@@ -1,6 +1,7 @@
 package org.example.dto;
 
 import lombok.*;
+import org.example.entity.Branch;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,4 +14,5 @@ public class BookDTO {
     String author;
     String genre;
     String status;
+    Branch branch;
 }

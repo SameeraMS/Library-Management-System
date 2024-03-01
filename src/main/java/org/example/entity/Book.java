@@ -2,6 +2,7 @@ package org.example.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @NoArgsConstructor
@@ -9,6 +10,7 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
+
 @Entity
 public class Book {
     @Id
@@ -17,4 +19,7 @@ public class Book {
     String author;
     String genre;
     String status;
+
+    @ManyToOne
+    Branch branch;
 }

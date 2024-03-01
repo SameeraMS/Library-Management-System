@@ -17,12 +17,12 @@ public class BranchBOImpl implements BranchBO {
 
     @Override
     public boolean save(BranchDTO dto) throws SQLException, ClassNotFoundException {
-        return branchDaoImpl.save(new Branch(dto.getId(),dto.getAddress()));
+        return branchDaoImpl.save(new Branch(dto.getId(),dto.getLocation(),dto.getTelephone(),dto.getEmail(),dto.getAddress(),null));
     }
 
     @Override
     public boolean update(BranchDTO dto) throws SQLException, ClassNotFoundException {
-        return branchDaoImpl.update(new Branch(dto.getId(),dto.getAddress()));
+        return branchDaoImpl.update(new Branch(dto.getId(),dto.getLocation(),dto.getTelephone(),dto.getEmail(),dto.getAddress(),null));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class BranchBOImpl implements BranchBO {
         if (search == null) {
             return null;
         } else {
-            return new BranchDTO(search.getId(),search.getAddress());
+            return new BranchDTO(search.getId(),search.getLocation(),search.getTelephone(),search.getEmail(),search.getAddress());
         }
     }
 
@@ -50,7 +50,7 @@ public class BranchBOImpl implements BranchBO {
             return null;
         } else {
             for (Branch branch : all) {
-                branchDTOS.add(new BranchDTO(branch.getId(),branch.getAddress()));
+                branchDTOS.add(new BranchDTO(branch.getId(),branch.getLocation(),branch.getTelephone(),branch.getEmail(),branch.getAddress()));
             }
             return branchDTOS;
         }

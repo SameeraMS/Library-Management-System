@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.controller.admin.BranchFormController"
-            prefHeight="800.0" prefWidth="1040.0">
 
+<AnchorPane prefHeight="800.0" prefWidth="1040.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.BranchFormController">
+   <children>
+      <Label layoutX="50.0" layoutY="20.0" text="MANAGE BRANCHES">
+         <font>
+            <Font name="System Bold" size="37.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtId" layoutX="257.0" layoutY="145.0" onAction="#txtIdOnAction" prefHeight="37.0" prefWidth="232.0" promptText="Branch Id" />
+      <TextField fx:id="txtLocation" layoutX="599.0" layoutY="145.0" onAction="#txtLocationOnAction" prefHeight="37.0" prefWidth="232.0" promptText="Location" />
+      <TextField fx:id="txtTelephone" layoutX="257.0" layoutY="209.0" prefHeight="37.0" prefWidth="232.0" promptText="Telephone " />
+      <TextField fx:id="txtEmail" layoutX="599.0" layoutY="209.0" prefHeight="37.0" prefWidth="232.0" promptText="Email" />
+      <TextField fx:id="txtAddress" layoutX="257.0" layoutY="263.0" prefHeight="37.0" prefWidth="232.0" promptText="Address" />
+      <ComboBox fx:id="cmbBranch" layoutX="450.0" layoutY="90.0" onAction="#cmbBranchOnAction" prefWidth="150.0" promptText="Branches" />
+      <TableView fx:id="tblBranch" layoutX="117.0" layoutY="407.0" prefHeight="313.0" prefWidth="813.0">
+        <columns>
+          <TableColumn prefWidth="148.27190399169922" text="Id" />
+          <TableColumn prefWidth="192.54385375976562" text="Location" />
+            <TableColumn prefWidth="210.54232788085938" text="Telephone" />
+            <TableColumn minWidth="0.0" prefWidth="257.81732177734375" text="Email" />
+        </columns>
+      </TableView>
+      <Button layoutX="272.0" layoutY="340.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="36.0" prefWidth="91.0" text="Save" />
+      <Button layoutX="414.0" layoutY="343.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="36.0" prefWidth="91.0" text="Update" />
+      <Button layoutX="910.0" layoutY="736.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="36.0" prefWidth="91.0" text="Delete" />
+      <Button layoutX="559.0" layoutY="345.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="36.0" prefWidth="91.0" text="clear" />
+   </children>
 </AnchorPane>

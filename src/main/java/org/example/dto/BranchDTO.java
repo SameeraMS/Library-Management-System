@@ -2,6 +2,8 @@ package org.example.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -9,5 +11,8 @@ import lombok.*;
 @ToString
 public class BranchDTO {
     String id;
+    String location;
+    int telephone;
+    String email;
     String address;
 }
