@@ -1,9 +1,6 @@
 package org.example.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -19,6 +16,8 @@ public class Branch {
 
     @Id
     String id;
+
+    @Column(unique = true)
     String location;
     int telephone;
     String email;

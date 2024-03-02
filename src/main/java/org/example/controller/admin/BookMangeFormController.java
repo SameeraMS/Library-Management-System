@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import org.example.dto.tm.BookTm;
 
 public class BookMangeFormController {
     public TextField txtSearch;
@@ -12,8 +13,11 @@ public class BookMangeFormController {
     public TextField txtAuthor;
     public TextField txtGenre;
     public TextField txtStatus;
-    public ComboBox cmbBranch;
-    public TableView tblBooks;
+    public ComboBox<String> cmbBranch;
+    public TableView<BookTm> tblBooks;
+
+    public void initialize() {
+    }
 
     public void txtSearchOnAction(ActionEvent actionEvent) {
     }
@@ -31,5 +35,8 @@ public class BookMangeFormController {
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
+    }
+
+    public void selectBranchOnAction(ActionEvent actionEvent) {
     }
 }

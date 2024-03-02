@@ -71,4 +71,15 @@ public class BranchDAOImpl implements BranchDAO {
         int id = Integer.parseInt(object.toString());
         return "BR" + (id + 1);
     }
+
+    @Override
+    public Branch searchByLocation(String location) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Branch branch = (Branch) session.createQuery("FROM Branch WHERE location = :location").setParameter("location", location).uniqueResult();
+
+        transaction.commit();
+        session.close();
+        return branch;
+    }
 }

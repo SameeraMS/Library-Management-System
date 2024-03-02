@@ -60,4 +60,10 @@ public class BranchBOImpl implements BranchBO {
     public String generateNextId() throws SQLException, ClassNotFoundException {
         return branchDaoImpl.generateNextId();
     }
+
+    @Override
+    public BranchDTO searchByLocation(String location) throws SQLException, ClassNotFoundException{
+        Branch branch = branchDaoImpl.searchByLocation(location);
+        return new BranchDTO(branch.getId(),branch.getLocation(),branch.getTelephone(),branch.getEmail(),branch.getAddress());
+    }
 }
