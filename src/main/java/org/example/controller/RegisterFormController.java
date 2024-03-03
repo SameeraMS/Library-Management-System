@@ -10,9 +10,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.AdminBO;
+import org.example.bo.custom.BranchBO;
 import org.example.bo.custom.UserBO;
 import org.example.bo.custom.impl.AdminBOImpl;
 import org.example.dto.AdminDTO;
+import org.example.dto.BranchDTO;
 import org.example.dto.UserDTO;
 
 import java.io.IOException;
@@ -26,12 +28,23 @@ public class RegisterFormController {
     public TextField txtEmail;
     public TextField txtPassword;
     public TextField txtRePassword;
+    public ComboBox<String> cmbBranch;
 
     AdminBO adminBoImpl = (AdminBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
     UserBO userBoImpl = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
+    BranchBO branchBO = (BranchBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BRANCH);
 
     public void initialize() {
         cmbType.getItems().addAll("Admin", "User");
+        cmbBranch.setVisible(false);
+
+        try {
+            for (BranchDTO branchDTO : branchBO.getAll()) {
+                cmbBranch.getItems().add(branchDTO.getLocation());
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void loginOnAction(MouseEvent mouseEvent) throws IOException {
@@ -56,12 +69,18 @@ public class RegisterFormController {
         } else {
 
             if (type.equals("User")) {
-                try {
-                    userBoImpl.save(new UserDTO(username, email, password));
-                    new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
-                } catch (SQLException | ClassNotFoundException e) {
-                    throw new RuntimeException(e);
+                if (cmbBranch.getValue() == null) {
+                    new Alert(Alert.AlertType.ERROR, "Please select branch").show();
+                } else {
+                    try {
+                        BranchDTO branchDTO = branchBO.searchByLocation(cmbBranch.getValue());
+                        userBoImpl.save(new UserDTO(username, email, password, branchDTO));
+                        new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
+
             } else {
                 try {
                     adminBoImpl.save(new AdminDTO(username, email, password));
@@ -83,5 +102,13 @@ public class RegisterFormController {
 
     public void usernameOnAction(ActionEvent actionEvent) {
         txtEmail.requestFocus();
+    }
+
+    public void cmbTypeOnAction(ActionEvent actionEvent) {
+        if (cmbType.getValue().equals("User")) {
+            cmbBranch.setVisible(true);
+        } else {
+            cmbBranch.setVisible(false);
+        }
     }
 }

@@ -3,7 +3,9 @@ package org.example.bo.custom.impl;
 import org.example.bo.custom.UserBO;
 import org.example.dao.DAOFactory;
 import org.example.dao.custom.UserDAO;
+import org.example.dto.BranchDTO;
 import org.example.dto.UserDTO;
+import org.example.entity.Branch;
 import org.example.entity.User;
 
 import java.sql.SQLException;
@@ -15,12 +17,16 @@ public class UserBOImpl implements UserBO {
     UserDAO userDaoImpl = (UserDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.USER);
     @Override
     public boolean save(UserDTO dto) throws SQLException, ClassNotFoundException {
-        return userDaoImpl.save(new User(dto.getName(), dto.getEmail(), dto.getPassword()));
+        BranchDTO branch = dto.getBranch();
+        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress(), null, null);
+        return userDaoImpl.save(new User(dto.getName(), dto.getEmail(), dto.getPassword(), branch1));
     }
 
     @Override
     public boolean update(UserDTO dto) throws SQLException, ClassNotFoundException {
-        return userDaoImpl.update(new User(dto.getName(), dto.getEmail(), dto.getPassword()));
+        BranchDTO branch = dto.getBranch();
+        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress(), null, null);
+        return userDaoImpl.update(new User(dto.getName(), dto.getEmail(), dto.getPassword(), branch1));
     }
 
     @Override
@@ -35,7 +41,7 @@ public class UserBOImpl implements UserBO {
         if (search == null){
             return null;
         } else {
-            return new UserDTO(search.getName(), search.getEmail(), search.getPassword());
+            return new UserDTO(search.getName(), search.getEmail(), search.getPassword(), new BranchDTO(search.getBranch().getId(), search.getBranch().getLocation(), search.getBranch().getTelephone(), search.getBranch().getEmail(), search.getBranch().getAddress()));
         }
     }
 
@@ -48,7 +54,7 @@ public class UserBOImpl implements UserBO {
             return null;
         } else {
             for (User user : all) {
-                userDTOS.add(new UserDTO(user.getName(), user.getEmail(), user.getPassword()));
+                userDTOS.add(new UserDTO(user.getName(), user.getEmail(), user.getPassword(), new BranchDTO(user.getBranch().getId(), user.getBranch().getLocation(), user.getBranch().getTelephone(), user.getBranch().getEmail(), user.getBranch().getAddress())));
             }
             return userDTOS;
         }

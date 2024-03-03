@@ -14,5 +14,5 @@ public class BookDTO {
     String author;
     String genre;
     String status;
-    Branch branch;
+    BranchDTO branch;
 }

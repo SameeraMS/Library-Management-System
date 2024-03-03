@@ -4,7 +4,9 @@ import org.example.bo.custom.BookBO;
 import org.example.dao.DAOFactory;
 import org.example.dao.custom.BookDAO;
 import org.example.dto.BookDTO;
+import org.example.dto.BranchDTO;
 import org.example.entity.Book;
+import org.example.entity.Branch;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,12 +17,16 @@ public class BookBOImpl implements BookBO {
     BookDAO bookDaoImpl = (BookDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BOOK);
     @Override
     public boolean save(BookDTO dto) throws SQLException, ClassNotFoundException {
-        return bookDaoImpl.save(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus(),dto.getBranch()));
+        BranchDTO branch = dto.getBranch();
+        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress(), null, null);
+        return bookDaoImpl.save(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus(), branch1));
     }
 
     @Override
     public boolean update(BookDTO dto) throws SQLException, ClassNotFoundException {
-        return bookDaoImpl.update(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus(),dto.getBranch()));
+        BranchDTO branch = dto.getBranch();
+        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress(), null, null);
+        return bookDaoImpl.update(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus(), branch1));
     }
 
     @Override
@@ -35,7 +41,7 @@ public class BookBOImpl implements BookBO {
         if (search == null) {
             return null;
         } else {
-            return new BookDTO(search.getId(),search.getTitle(),search.getAuthor(),search.getGenre(),search.getStatus(),search.getBranch());
+            return new BookDTO(search.getId(),search.getTitle(),search.getAuthor(),search.getGenre(),search.getStatus(),new BranchDTO(search.getBranch().getId(), search.getBranch().getLocation(), search.getBranch().getTelephone(), search.getBranch().getEmail(), search.getBranch().getAddress()));
         }
     }
 
@@ -48,7 +54,7 @@ public class BookBOImpl implements BookBO {
             return null;
         } else {
             for (Book book : all) {
-                list.add(new BookDTO(book.getId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus(),book.getBranch()));
+                list.add(new BookDTO(book.getId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus(),new BranchDTO(book.getBranch().getId(), book.getBranch().getLocation(), book.getBranch().getTelephone(), book.getBranch().getEmail(), book.getBranch().getAddress())));
             }
             return list;
         }
