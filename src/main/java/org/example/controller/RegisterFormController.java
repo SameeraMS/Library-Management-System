@@ -29,6 +29,7 @@ public class RegisterFormController {
     public TextField txtPassword;
     public TextField txtRePassword;
     public ComboBox<String> cmbBranch;
+    public TextField txtTel;
 
     AdminBO adminBoImpl = (AdminBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
     UserBO userBoImpl = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
@@ -61,8 +62,9 @@ public class RegisterFormController {
         String email = txtEmail.getText();
         String password = txtPassword.getText();
         String rePassword = txtRePassword.getText();
+        int tel = Integer.parseInt(txtTel.getText());
 
-        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || rePassword.isEmpty() || type.isEmpty()) {
+        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || rePassword.isEmpty() || type.isEmpty() || txtTel.getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "All fields are required").show();
         } else if (!password.equals(rePassword)) {
             new Alert(Alert.AlertType.ERROR, "Password does not match").show();
@@ -74,7 +76,7 @@ public class RegisterFormController {
                 } else {
                     try {
                         BranchDTO branchDTO = branchBO.searchByLocation(cmbBranch.getValue());
-                        userBoImpl.save(new UserDTO(username, email, password, branchDTO));
+                        userBoImpl.save(new UserDTO(username, email, password,tel, branchDTO));
                         new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
                     } catch (SQLException | ClassNotFoundException e) {
                         throw new RuntimeException(e);
@@ -83,7 +85,7 @@ public class RegisterFormController {
 
             } else {
                 try {
-                    adminBoImpl.save(new AdminDTO(username, email, password));
+                    adminBoImpl.save(new AdminDTO(username, email,tel, password));
                     new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
                 } catch (Exception e) {
                     new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
@@ -110,5 +112,8 @@ public class RegisterFormController {
         } else {
             cmbBranch.setVisible(false);
         }
+    }
+
+    public void telOnAction(ActionEvent actionEvent) {
     }
 }

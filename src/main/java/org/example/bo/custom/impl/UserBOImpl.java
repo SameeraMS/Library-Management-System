@@ -19,14 +19,14 @@ public class UserBOImpl implements UserBO {
     public boolean save(UserDTO dto) throws SQLException, ClassNotFoundException {
         BranchDTO branch = dto.getBranch();
         Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress(), null, null);
-        return userDaoImpl.save(new User(dto.getName(), dto.getEmail(), dto.getPassword(), branch1));
+        return userDaoImpl.save(new User(dto.getName(), dto.getEmail(), dto.getPassword(),dto.getTelephone(), branch1));
     }
 
     @Override
     public boolean update(UserDTO dto) throws SQLException, ClassNotFoundException {
         BranchDTO branch = dto.getBranch();
         Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress(), null, null);
-        return userDaoImpl.update(new User(dto.getName(), dto.getEmail(), dto.getPassword(), branch1));
+        return userDaoImpl.update(new User(dto.getName(), dto.getEmail(), dto.getPassword(),dto.getTelephone(), branch1));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class UserBOImpl implements UserBO {
         if (search == null){
             return null;
         } else {
-            return new UserDTO(search.getName(), search.getEmail(), search.getPassword(), new BranchDTO(search.getBranch().getId(), search.getBranch().getLocation(), search.getBranch().getTelephone(), search.getBranch().getEmail(), search.getBranch().getAddress()));
+            return new UserDTO(search.getName(), search.getEmail(), search.getPassword(),search.getTelephone(), new BranchDTO(search.getBranch().getId(), search.getBranch().getLocation(), search.getBranch().getTelephone(), search.getBranch().getEmail(), search.getBranch().getAddress()));
         }
     }
 
@@ -54,7 +54,7 @@ public class UserBOImpl implements UserBO {
             return null;
         } else {
             for (User user : all) {
-                userDTOS.add(new UserDTO(user.getName(), user.getEmail(), user.getPassword(), new BranchDTO(user.getBranch().getId(), user.getBranch().getLocation(), user.getBranch().getTelephone(), user.getBranch().getEmail(), user.getBranch().getAddress())));
+                userDTOS.add(new UserDTO(user.getName(), user.getEmail(), user.getPassword(),user.getTelephone(), new BranchDTO(user.getBranch().getId(), user.getBranch().getLocation(), user.getBranch().getTelephone(), user.getBranch().getEmail(), user.getBranch().getAddress())));
             }
             return userDTOS;
         }

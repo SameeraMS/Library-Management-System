@@ -1,9 +1,9 @@
 package org.example.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,6 +18,8 @@ public class User {
     @Id
     String email;
     String password;
+    @Column(unique = true)
+    int telephone;
 
     @ManyToOne
     Branch branch;

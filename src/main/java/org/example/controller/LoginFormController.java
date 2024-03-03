@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.AdminBO;
 import org.example.bo.custom.UserBO;
-import org.example.controller.forgotPass.ForgotPass3FormController;
 import org.example.dto.AdminDTO;
 import org.example.dto.UserDTO;
 
@@ -89,38 +88,22 @@ public class LoginFormController {
     }
 
     public void login(String name) throws IOException {
-        String value = cmbType.getValue();
 
-        if (value.equals("User")){
-            Stage window = (Stage) root.getScene().getWindow();
-            window.close();
+        Stage window = (Stage) root.getScene().getWindow();
+        window.close();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/userDashboard_form.fxml"));
-            Parent main = fxmlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/mainDashboard_form.fxml"));
+        Parent main = fxmlLoader.load();
 
-            UserDashboardFormController user =  fxmlLoader.getController();
-            user.setUser(name);
+        MainDashboardFormController admin =  fxmlLoader.getController();
+        admin.setUser(name);
+        System.out.println("login: " + name);
 
+        Scene scene = new Scene(main);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
 
-            Scene scene = new Scene(main);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        } else {
-            Stage window = (Stage) root.getScene().getWindow();
-            window.close();
-
-            FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/adminDashboard_form.fxml"));
-            Parent main = fxmlLoader.load();
-
-            AdminDashboardFormController admin =  fxmlLoader.getController();
-            admin.setUser(name);
-
-            Scene scene = new Scene(main);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        }
 
 
     }

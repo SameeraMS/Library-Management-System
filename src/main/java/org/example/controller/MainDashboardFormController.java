@@ -12,28 +12,36 @@ import lombok.Setter;
 import java.io.IOException;
 import java.net.URL;
 
-public class UserDashboardFormController {
+public class MainDashboardFormController {
     public AnchorPane changePain;
     public Label lblUsername;
     public AnchorPane root;
-
     @Setter
-    public String user;
+    private String user;
 
     public void initialize() {
-        lblUsername.setText("Welcome " + user);
+        System.out.println(user);
+        lblUsername.setText(user);
     }
 
     public void booksOnAction(ActionEvent actionEvent) {
-        changeForm("/view/user/book_form.fxml");
+        changeForm("/view/admin/bookMange_form.fxml");
     }
 
-    public void settingsOnAction(ActionEvent actionEvent) {
-        changeForm("/view/user/settings_form.fxml");
+    public void branchOnAction(ActionEvent actionEvent) {
+        changeForm("/view/admin/branch_form.fxml");
+    }
+
+    public void userOnAction(ActionEvent actionEvent) {
+        changeForm("/view/admin/user_form.fxml");
+    }
+
+    public void borrowOnAction(ActionEvent actionEvent) {
+        changeForm("/view/admin/borrow_form.fxml");
     }
 
     public void dashboardOnAction(ActionEvent actionEvent) {
-        changeForm("/view/user/dashboard_form.fxml");
+        changeForm("/view/admin/dashboard_form.fxml");
     }
 
     public void logOutOnAction(ActionEvent actionEvent) throws IOException {
@@ -57,5 +65,13 @@ public class UserDashboardFormController {
             e.printStackTrace();
         }
 
+    }
+
+    public void UserbooksOnAction(ActionEvent actionEvent) {
+        changeForm("/view/user/book_form.fxml");
+    }
+
+    public void settingsOnAction(ActionEvent actionEvent) {
+        changeForm("/view/user/settings_form.fxml");
     }
 }

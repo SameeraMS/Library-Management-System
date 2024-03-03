@@ -17,11 +17,12 @@
       <TextField fx:id="txtUsername" layoutX="293.0" layoutY="208.0" onAction="#usernameOnAction" prefHeight="38.0" prefWidth="256.0" promptText="Username" />
       <ComboBox fx:id="cmbType" layoutX="345.0" layoutY="143.0" onAction="#cmbTypeOnAction" prefWidth="150.0" promptText="Select" />
       <TextField fx:id="txtEmail" layoutX="292.0" layoutY="262.0" onAction="#emailOnAction" prefHeight="38.0" prefWidth="256.0" promptText="Email" />
-      <TextField fx:id="txtPassword" layoutX="292.0" layoutY="315.0" onAction="#passwordOnAction" prefHeight="38.0" prefWidth="256.0" promptText="Password" />
-      <TextField fx:id="txtRePassword" layoutX="292.0" layoutY="370.0" prefHeight="38.0" prefWidth="256.0" promptText="Re-enter Password" />
-      <Button layoutX="387.0" layoutY="472.0" mnemonicParsing="false" onAction="#signUpOnAction" text="Sign up" />
-      <Label layoutX="292.0" layoutY="517.0" text="Already Have Account..? " />
-      <Label layoutX="437.0" layoutY="517.0" onMouseClicked="#loginOnAction" text="Log in" />
-      <ComboBox fx:id="cmbBranch" layoutX="342.0" layoutY="427.0" prefWidth="150.0" promptText="Branch" />
+      <TextField fx:id="txtPassword" layoutX="292.0" layoutY="369.0" onAction="#passwordOnAction" prefHeight="38.0" prefWidth="256.0" promptText="Password" />
+      <TextField fx:id="txtRePassword" layoutX="292.0" layoutY="424.0" prefHeight="38.0" prefWidth="256.0" promptText="Re-enter Password" />
+      <Button layoutX="387.0" layoutY="526.0" mnemonicParsing="false" onAction="#signUpOnAction" text="Sign up" />
+      <Label layoutX="292.0" layoutY="571.0" text="Already Have Account..? " />
+      <Label layoutX="437.0" layoutY="571.0" onMouseClicked="#loginOnAction" text="Log in" />
+      <ComboBox fx:id="cmbBranch" layoutX="342.0" layoutY="481.0" prefWidth="150.0" promptText="Branch" />
+      <TextField fx:id="txtTel" layoutX="292.0" layoutY="315.0" onAction="#telOnAction" prefHeight="38.0" prefWidth="256.0" promptText="Telephone" />
    </children>
 </AnchorPane>

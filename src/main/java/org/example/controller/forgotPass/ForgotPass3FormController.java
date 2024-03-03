@@ -30,7 +30,7 @@ public class ForgotPass3FormController {
 
         if(pass1.equals(pass2)){
             UserDTO search = userBo.search(email);
-            UserDTO userDTO = new UserDTO(search.getName(), search.getEmail(), pass1, search.getBranch());
+            UserDTO userDTO = new UserDTO(search.getName(), search.getEmail(), pass1,search.getTelephone()  , search.getBranch());
 
             try {
                 userBo.update(userDTO);

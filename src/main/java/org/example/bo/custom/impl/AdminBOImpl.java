@@ -15,12 +15,12 @@ public class AdminBOImpl implements AdminBO {
     AdminDAO adminDaoImpl = (AdminDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ADMIN);
     @Override
     public boolean save(AdminDTO dto) throws SQLException, ClassNotFoundException {
-        return adminDaoImpl.save(new Admin(dto.getName(),dto.getEmail(),dto.getPassword()));
+        return adminDaoImpl.save(new Admin(dto.getName(),dto.getEmail(),dto.getTelephone(),dto.getPassword()));
     }
 
     @Override
     public boolean update(AdminDTO dto) throws SQLException, ClassNotFoundException {
-        return adminDaoImpl.update(new Admin(dto.getName(),dto.getEmail(),dto.getPassword()));
+        return adminDaoImpl.update(new Admin(dto.getName(),dto.getEmail(),dto.getTelephone(),dto.getPassword()));
     }
 
     @Override
@@ -35,7 +35,7 @@ public class AdminBOImpl implements AdminBO {
         if (search == null) {
             return null;
         } else {
-            return new AdminDTO(search.getName(),search.getEmail(),search.getPassword());
+            return new AdminDTO(search.getName(),search.getEmail(),search.getTelephone(),search.getPassword());
         }
     }
 
@@ -48,7 +48,7 @@ public class AdminBOImpl implements AdminBO {
             return null;
         }else {
             for (Admin admin : all) {
-                adminDTOS.add(new AdminDTO(admin.getName(),admin.getEmail(),admin.getPassword()));
+                adminDTOS.add(new AdminDTO(admin.getName(),admin.getEmail(),admin.getTelephone(),admin.getPassword()));
             }
             return adminDTOS;
         }
