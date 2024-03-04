@@ -18,14 +18,14 @@ public class UserBOImpl implements UserBO {
     @Override
     public boolean save(UserDTO dto) throws SQLException, ClassNotFoundException {
         BranchDTO branch = dto.getBranch();
-        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress(), null, null);
+        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress());
         return userDaoImpl.save(new User(dto.getName(), dto.getEmail(), dto.getPassword(),dto.getTelephone(), branch1));
     }
 
     @Override
     public boolean update(UserDTO dto) throws SQLException, ClassNotFoundException {
         BranchDTO branch = dto.getBranch();
-        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress(), null, null);
+        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress());
         return userDaoImpl.update(new User(dto.getName(), dto.getEmail(), dto.getPassword(),dto.getTelephone(), branch1));
     }
 

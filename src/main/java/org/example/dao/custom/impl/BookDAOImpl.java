@@ -67,12 +67,24 @@ public class BookDAOImpl implements BookDAO {
     public String generateNextId() throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        Object object = session.createQuery("SELECT COUNT(id) FROM Book").uniqueResult();
+        Object object = session.createQuery("SELECT id FROM Book ORDER BY id DESC LIMIT 1").uniqueResult();
         transaction.commit();
         session.close();
 
-        int id = Integer.parseInt(object.toString());
-        return "B" + (id + 1);
+        if(object != null) {
+            String CurrentId = object.toString();
+            String[] split = CurrentId.split("B0");
+
+            int id = Integer.parseInt(split[1]); //01
+            id++;
+            if(id<10) {
+                return "B00" + id;
+            } else {
+                return "B0" + id;
+            }
+        } else {
+            return "B001";
+        }
     }
 
     @Override

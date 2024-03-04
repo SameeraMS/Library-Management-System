@@ -17,12 +17,12 @@ public class BranchBOImpl implements BranchBO {
 
     @Override
     public boolean save(BranchDTO dto) throws SQLException, ClassNotFoundException {
-        return branchDaoImpl.save(new Branch(dto.getId(),dto.getLocation(),dto.getTelephone(),dto.getEmail(),dto.getAddress(),null,null));
+        return branchDaoImpl.save(new Branch(dto.getId(),dto.getLocation(),dto.getTelephone(),dto.getEmail(),dto.getAddress()));
     }
 
     @Override
     public boolean update(BranchDTO dto) throws SQLException, ClassNotFoundException {
-        return branchDaoImpl.update(new Branch(dto.getId(),dto.getLocation(),dto.getTelephone(),dto.getEmail(),dto.getAddress(),null,null));
+        return branchDaoImpl.update(new Branch(dto.getId(),dto.getLocation(),dto.getTelephone(),dto.getEmail(),dto.getAddress()));
     }
 
     @Override

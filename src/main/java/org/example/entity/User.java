@@ -21,6 +21,7 @@ public class User {
     @Column(unique = true)
     int telephone;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Branch_id")
     Branch branch;
 }

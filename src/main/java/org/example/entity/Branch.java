@@ -22,9 +22,5 @@ public class Branch {
     int telephone;
     String email;
     String address;
-    @OneToMany(mappedBy = "branch",cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Book> books;
 
-    @OneToMany(mappedBy = "branch",cascade = CascadeType.ALL, orphanRemoval = true)
-    List<User> users;
 }

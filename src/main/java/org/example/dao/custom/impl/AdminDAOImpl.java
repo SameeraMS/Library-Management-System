@@ -64,14 +64,7 @@ public class AdminDAOImpl implements AdminDAO {
 
     @Override
     public String generateNextId() throws SQLException, ClassNotFoundException {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        Object object = session.createQuery("SELECT COUNT(id) FROM Admin").uniqueResult();
-        transaction.commit();
-        session.close();
-
-        int id = Integer.parseInt(object.toString());
-        return "A" + (id + 1);
+        return "A001";
 
     }
 

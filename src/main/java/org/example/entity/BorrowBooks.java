@@ -17,10 +17,10 @@ public class BorrowBooks {
 
     @Id
     private String id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "User_email")
     private User user;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Book_id")
     private Book book;
     private LocalDate borrowDate;
