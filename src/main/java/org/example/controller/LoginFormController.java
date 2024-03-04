@@ -89,23 +89,20 @@ public class LoginFormController {
 
     public void login(String name) throws IOException {
 
-        Stage window = (Stage) root.getScene().getWindow();
-        window.close();
-
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/mainDashboard_form.fxml"));
         Parent main = fxmlLoader.load();
 
-        MainDashboardFormController admin =  fxmlLoader.getController();
-        admin.setUser(name);
-        System.out.println("login: " + name);
+        MainDashboardFormController dash =  fxmlLoader.getController();
+        dash.lblUsername.setText(name);
+        dash.setEmail(txtUsername.getText());
+        dash.setType(cmbType.getValue());
+       // dash.btnHide();
 
         Scene scene = new Scene(main);
-        Stage stage = new Stage();
+        Stage stage = (Stage) root.getScene().getWindow();
         stage.setScene(scene);
-        stage.show();
-
-
-
+        stage.setTitle("Dashboard");
+        stage.centerOnScreen();
     }
 
     public void signupOnAction(MouseEvent mouseEvent) throws IOException {

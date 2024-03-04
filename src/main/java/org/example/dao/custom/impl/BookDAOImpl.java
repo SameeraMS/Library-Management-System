@@ -5,6 +5,7 @@ import org.example.dao.CrudDAO;
 import org.example.dao.custom.AdminDAO;
 import org.example.dao.custom.BookDAO;
 import org.example.entity.Book;
+import org.example.entity.Branch;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -72,5 +73,17 @@ public class BookDAOImpl implements BookDAO {
 
         int id = Integer.parseInt(object.toString());
         return "B" + (id + 1);
+    }
+
+    @Override
+    public List<Book> searchByTitle(String title, String branch) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Book> book = session.createQuery("FROM Book WHERE branch.id = :branch AND title = :title", Book.class)
+                .setParameter("branch", branch).setParameter("title", title).list();
+        transaction.commit();
+        session.close();
+
+        return book;
     }
 }

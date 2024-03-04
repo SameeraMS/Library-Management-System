@@ -33,6 +33,7 @@ public class BranchFormController {
     }
 
     private void loadtable() {
+        tblBranch.getItems().clear();
         try {
             List<BranchDTO> all = branchBoImpl.getAll();
             for (BranchDTO branchDTO : all) {
@@ -51,6 +52,7 @@ public class BranchFormController {
     }
 
     private void loadComboBox() {
+        cmbBranch.getItems().clear();
         try {
             List<BranchDTO> all = branchBoImpl.getAll();
             for (BranchDTO branchDTO : all) {

@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.Setter;
+import org.example.controller.user.SettingsFormController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,14 +18,22 @@ public class MainDashboardFormController {
     public AnchorPane changePain;
     public Label lblUsername;
     public AnchorPane root;
+    public JFXButton btnSettings;
     @Setter
-    private String user;
+    private String email;
+
+    @Setter
+    private String type;
 
     public void initialize() {
-        System.out.println(user);
-        lblUsername.setText(user);
+
     }
 
+    public void btnHide(){
+        if (type.equals("Admin")) {
+            btnSettings.setVisible(false);
+        }
+    }
     public void booksOnAction(ActionEvent actionEvent) {
         changeForm("/view/admin/bookMange_form.fxml");
     }
@@ -71,7 +81,14 @@ public class MainDashboardFormController {
         changeForm("/view/user/book_form.fxml");
     }
 
-    public void settingsOnAction(ActionEvent actionEvent) {
-        changeForm("/view/user/settings_form.fxml");
+    public void settingsOnAction(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/user/settings_form.fxml"));
+        Parent main = fxmlLoader.load();
+
+        SettingsFormController setting =  fxmlLoader.getController();
+        setting.txtEmail.setText(email);
+
+        changePain.getChildren().clear();
+        changePain.getChildren().add(main);
     }
 }

@@ -21,9 +21,8 @@
       <TextField fx:id="txtName" layoutX="128.0" layoutY="252.0" prefHeight="42.0" prefWidth="263.0" promptText="Name" />
       <TextField fx:id="txtAuthor" layoutX="128.0" layoutY="308.0" prefHeight="42.0" prefWidth="263.0" promptText="Author" />
       <TextField fx:id="txtGenre" layoutX="128.0" layoutY="369.0" prefHeight="42.0" prefWidth="263.0" promptText="Genre" />
-      <TextField fx:id="txtStatus" layoutX="128.0" layoutY="425.0" prefHeight="42.0" prefWidth="263.0" promptText="Status" />
       <ComboBox fx:id="cmbBranch" layoutX="137.0" layoutY="487.0" prefWidth="150.0" promptText="Branch" />
-      <TableView fx:id="tblBooks" layoutX="434.0" layoutY="204.0" prefHeight="414.0" prefWidth="571.0">
+      <TableView fx:id="tblBooks" layoutX="434.0" layoutY="204.0" onMouseClicked="#tblOnAction" prefHeight="414.0" prefWidth="571.0">
         <columns>
             <TableColumn minWidth="0.0" prefWidth="105.0" text="Id" />
           <TableColumn prefWidth="183.0" text="Title" />
@@ -36,6 +35,7 @@
       <Button layoutX="294.0" layoutY="543.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="36.0" prefWidth="91.0" text="Delete" />
       <Button layoutX="186.0" layoutY="618.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="36.0" prefWidth="91.0" text="clear" />
       <Button layoutX="568.0" layoutY="101.0" mnemonicParsing="false" onAction="#searchOnAction" prefHeight="36.0" prefWidth="65.0" text="Search" />
-      <ComboBox fx:id="cmbSelectBranch" layoutX="679.0" layoutY="106.0" onAction="#selectBranchOnAction" prefWidth="150.0" promptText="Branch" />
+      <ComboBox fx:id="cmbSelectBranch" layoutX="679.0" layoutY="106.0" prefWidth="150.0" promptText="Branch" />
+      <ComboBox fx:id="cmbStatus" layoutX="137.0" layoutY="433.0" prefWidth="150.0" promptText="Status" />
    </children>
 </AnchorPane>

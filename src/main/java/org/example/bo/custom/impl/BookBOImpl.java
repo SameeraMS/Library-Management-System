@@ -64,4 +64,17 @@ public class BookBOImpl implements BookBO {
     public String generateNextId() throws SQLException, ClassNotFoundException {
         return bookDaoImpl.generateNextId();
     }
+    @Override
+    public List<BookDTO> searchByTitle(String title, String branch) throws SQLException, ClassNotFoundException{
+        List<Book> list = bookDaoImpl.searchByTitle(title, branch);
+        List<BookDTO> list1 = new ArrayList<>();
+
+        for (Book book:list) {
+            BookDTO bookDTO = new BookDTO(book.getId(), book.getTitle(), book.getAuthor(), book.getGenre(), book.getStatus(), new BranchDTO(book.getBranch().getId(), book.getBranch().getLocation(), book.getBranch().getTelephone(), book.getBranch().getEmail(), book.getBranch().getAddress()));
+            list1.add(bookDTO);
+        }
+
+        return list1;
+
+    }
 }

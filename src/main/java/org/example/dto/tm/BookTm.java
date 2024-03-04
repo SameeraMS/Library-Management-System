@@ -11,6 +11,5 @@ public class BookTm {
     String id;
     String title;
     String author;
-    String genre;
     String status;
 }
