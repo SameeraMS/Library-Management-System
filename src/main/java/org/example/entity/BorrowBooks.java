@@ -16,13 +16,12 @@ import java.time.LocalDate;
 public class BorrowBooks {
 
     @Id
-    private String id;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "User_email")
-    private User user;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Book_id")
-    private Book book;
-    private LocalDate borrowDate;
-    private LocalDate returnDate;
+     String id;
+    @ManyToOne
+     User user;
+    @ManyToOne
+     Book book;
+     LocalDate borrowDate;
+     LocalDate returnDate;
+     String status;
 }

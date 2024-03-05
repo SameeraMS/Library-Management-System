@@ -3,6 +3,7 @@ package org.example.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -21,7 +22,9 @@ public class User {
     @Column(unique = true)
     int telephone;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Branch_id")
+    @ManyToOne
     Branch branch;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<BorrowBooks> borrowBooks;
 }

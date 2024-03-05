@@ -25,7 +25,7 @@
             <TableColumn prefWidth="115.0" text="branch" />
         </columns>
       </TableView>
-      <TextField fx:id="txtMail" layoutX="671.0" layoutY="263.0" prefHeight="46.0" prefWidth="255.0" promptText="Email" />
+      <TextField fx:id="txtMail" editable="false" layoutX="671.0" layoutY="263.0" prefHeight="46.0" prefWidth="255.0" promptText="Email" />
       <TextField fx:id="txtName" layoutX="671.0" layoutY="327.0" prefHeight="46.0" prefWidth="255.0" promptText="Name" />
       <TextField fx:id="txtTelephone" layoutX="671.0" layoutY="389.0" prefHeight="46.0" prefWidth="255.0" promptText="Telephone" />
       <ComboBox fx:id="cmbBranch" layoutX="713.0" layoutY="477.0" prefWidth="150.0" promptText="Branch" />

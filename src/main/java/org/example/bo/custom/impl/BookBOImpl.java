@@ -18,15 +18,15 @@ public class BookBOImpl implements BookBO {
     @Override
     public boolean save(BookDTO dto) throws SQLException, ClassNotFoundException {
         BranchDTO branch = dto.getBranch();
-        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress());
-        return bookDaoImpl.save(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus(), branch1));
+        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress(),null,null);
+        return bookDaoImpl.save(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus(), branch1,null));
     }
 
     @Override
     public boolean update(BookDTO dto) throws SQLException, ClassNotFoundException {
         BranchDTO branch = dto.getBranch();
-        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress());
-        return bookDaoImpl.update(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus(), branch1));
+        Branch branch1 = new Branch(branch.getId(), branch.getLocation(), branch.getTelephone(), branch.getEmail(), branch.getAddress(),null,null);
+        return bookDaoImpl.update(new Book(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getGenre(),dto.getStatus(), branch1,null));
     }
 
     @Override

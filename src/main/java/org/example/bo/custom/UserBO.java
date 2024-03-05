@@ -18,4 +18,7 @@ public interface UserBO extends SuperBO {
     UserDTO search(String id) throws SQLException, ClassNotFoundException;
     List<UserDTO> getAll() throws SQLException, ClassNotFoundException;
     String generateNextId() throws SQLException, ClassNotFoundException;
+    List<UserDTO> searchUserByName(String name) throws SQLException, ClassNotFoundException;
+    UserDTO searchUserByEmail(String email) throws SQLException, ClassNotFoundException;
+    UserDTO searchUserByTelephone(String telephone) throws SQLException, ClassNotFoundException;
 }

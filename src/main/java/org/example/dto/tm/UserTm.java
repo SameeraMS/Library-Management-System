@@ -12,6 +12,6 @@ public class UserTm {
 
     private String email;
     private String name;
-    private String telephone;
+    private int telephone;
     private String branch;
 }

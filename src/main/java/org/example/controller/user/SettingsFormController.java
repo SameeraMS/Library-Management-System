@@ -32,6 +32,7 @@ public class SettingsFormController {
     public void initialize() throws ClassNotFoundException {
         txtEmail.setEditable(false);
         initializeUser();
+        cmbBranch.setEditable(false);
     }
 
     public void initializeUser() {
@@ -54,6 +55,12 @@ public class SettingsFormController {
         String telephone = txtTelephone.getText();
         String branch = cmbBranch.getValue();
 
+        try {
+            userdto = userBOImpl.search(email);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         if (username.isEmpty() || branch.isEmpty() || telephone.isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "All fields are required").show();
         } else {
@@ -72,6 +79,11 @@ public class SettingsFormController {
         String newPw = txtNewPW.getText();
         String newPw2 = txtNewPW2.getText();
 
+        try {
+            userdto = userBOImpl.search(email);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         if (currentPw.isEmpty() || newPw.isEmpty() || newPw2.isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "All fields are required").show();

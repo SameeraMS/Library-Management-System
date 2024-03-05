@@ -46,7 +46,7 @@ public class LoginFormController {
         String type = cmbType.getValue();
         String password = txtPassword.getText();
 
-        if (username.isEmpty() || password.isEmpty() || type.isEmpty()) {
+        if (username.isEmpty() || password.isEmpty() || cmbType.getValue() == null) {
             new Alert(Alert.AlertType.ERROR, "All fields are required").show();
         } else {
             if (type.equals("User")) {

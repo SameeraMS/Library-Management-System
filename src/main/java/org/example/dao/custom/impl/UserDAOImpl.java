@@ -67,4 +67,34 @@ public class UserDAOImpl implements UserDAO {
     public String generateNextId() throws SQLException, ClassNotFoundException {
         return "U001";
     }
+    @Override
+    public List<User> searchUserByName(String name) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<User> userList = session.createQuery("FROM User WHERE name = :name").setParameter("name", name).list();
+        transaction.commit();
+        session.close();
+        return userList;
+    }
+
+    @Override
+    public User searchUserByEmail(String email) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        User user = (User) session.createQuery("FROM User WHERE email = :email").setParameter("email", email).uniqueResult();
+        transaction.commit();
+        session.close();
+        return user;
+    }
+
+    @Override
+    public User searchUserByTelephone(String telephone) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        User user = (User) session.createQuery("FROM User WHERE telephone = :telephone").setParameter("telephone", telephone).uniqueResult();
+        transaction.commit();
+        session.close();
+        return user;
+    }
+
 }
