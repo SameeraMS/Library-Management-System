@@ -1,10 +1,7 @@
 package org.example.bo;
 
 
-import org.example.bo.custom.impl.AdminBOImpl;
-import org.example.bo.custom.impl.BookBOImpl;
-import org.example.bo.custom.impl.BranchBOImpl;
-import org.example.bo.custom.impl.UserBOImpl;
+import org.example.bo.custom.impl.*;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -16,7 +13,7 @@ public class BOFactory {
         return (boFactory == null) ? boFactory = new BOFactory() : boFactory;
     }
     public enum BOTypes {
-        USER, BOOK, BRANCH, ADMIN
+        USER, BOOK, BRANCH, ADMIN, BORROW
     }
 
     public SuperBO getBO(BOTypes boTypes){
@@ -29,6 +26,8 @@ public class BOFactory {
                 return new BranchBOImpl();
             case ADMIN:
                 return new AdminBOImpl();
+            case BORROW:
+                return new BorrowingBOImpl();
             default:
                 return null;
         }

@@ -1,10 +1,7 @@
 package org.example.dao;
 
 
-import org.example.dao.custom.impl.AdminDAOImpl;
-import org.example.dao.custom.impl.BookDAOImpl;
-import org.example.dao.custom.impl.BranchDAOImpl;
-import org.example.dao.custom.impl.UserDAOImpl;
+import org.example.dao.custom.impl.*;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -18,7 +15,7 @@ public class DAOFactory {
     }
 
     public enum DAOTypes {
-        ADMIN, USER, BOOK, BRANCH
+        ADMIN, USER, BOOK, BRANCH, BORROW
     }
     public SuperDAO getDAO(DAOTypes daoTypes){
         switch (daoTypes){
@@ -30,6 +27,8 @@ public class DAOFactory {
                 return new BookDAOImpl();
             case BRANCH:
                 return new BranchDAOImpl();
+            case BORROW:
+                return new BorrowingDAOImpl();
             default:
                 return null;
         }
