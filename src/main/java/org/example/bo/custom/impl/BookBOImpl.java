@@ -54,7 +54,9 @@ public class BookBOImpl implements BookBO {
             return null;
         } else {
             for (Book book : all) {
-                list.add(new BookDTO(book.getId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus(),new BranchDTO(book.getBranch().getId(), book.getBranch().getLocation(), book.getBranch().getTelephone(), book.getBranch().getEmail(), book.getBranch().getAddress())));
+                list.add(new BookDTO(book.getId(),book.getTitle(),book.getAuthor(),book.getGenre(),book.getStatus(),
+                        new BranchDTO(book.getBranch().getId(), book.getBranch().getLocation(), book.getBranch().getTelephone(),
+                                book.getBranch().getEmail(), book.getBranch().getAddress())));
             }
             return list;
         }

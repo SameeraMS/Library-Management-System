@@ -56,7 +56,7 @@ public class BorrowingDAOImpl implements BorrowingDAO {
     public List<BorrowBooks> getAll() throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        List<BorrowBooks> list = session.createQuery("FROM Borrowing.Books").list();
+        List<BorrowBooks> list = session.createQuery("FROM BorrowBooks").list();
         transaction.commit();
         session.close();
         return list;
@@ -66,7 +66,7 @@ public class BorrowingDAOImpl implements BorrowingDAO {
     public String generateNextId() throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        Object object = session.createQuery("SELECT id FROM Borrowing.Books ORDER BY id DESC LIMIT 1").uniqueResult();
+        Object object = session.createQuery("SELECT id FROM BorrowBooks ORDER BY id DESC LIMIT 1").uniqueResult();
         transaction.commit();
         session.close();
 
@@ -84,5 +84,34 @@ public class BorrowingDAOImpl implements BorrowingDAO {
         } else {
             return "BB001";
         }
+    }
+    @Override
+    public List<BorrowBooks> getPendingList() throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<BorrowBooks> list = session.createQuery("FROM BorrowBooks WHERE status='pending'").list();
+        transaction.commit();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public List<BorrowBooks> getUserList(String email) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<BorrowBooks> list = session.createQuery("FROM BorrowBooks WHERE user.email= :email").setParameter("email", email).list();
+        transaction.commit();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public List<BorrowBooks> getNotReturnList(String date) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<BorrowBooks> list = session.createQuery("FROM BorrowBooks WHERE returnDate >= :date").setParameter("date", date).list();
+        transaction.commit();
+        session.close();
+        return list;
     }
 }

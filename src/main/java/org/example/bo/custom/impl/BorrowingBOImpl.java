@@ -61,4 +61,43 @@ public class BorrowingBOImpl implements BorrowingBO {
     public String generateNextId() throws SQLException, ClassNotFoundException {
         return borrowingDaoImpl.generateNextId();
     }
+
+    @Override
+    public List<BorrowDTO> getPendingList() throws SQLException, ClassNotFoundException {
+        List<BorrowBooks> pendingList = borrowingDaoImpl.getPendingList();
+        List<BorrowDTO> list = new ArrayList<>();
+
+        for(BorrowBooks b : pendingList){
+            UserDTO user = new UserDTO(b.getUser().getName(), b.getUser().getEmail(), b.getUser().getPassword(), b.getUser().getTelephone(), null);
+            BookDTO book = new BookDTO(b.getBook().getId(), b.getBook().getTitle(), b.getBook().getAuthor(), b.getBook().getGenre(), b.getBook().getStatus(), null);
+            list.add(new BorrowDTO(b.getId(),user,book,b.getBorrowDate(),b.getReturnDate(),b.getStatus()));
+        }
+        return list;
+    }
+
+    @Override
+    public List<BorrowDTO> getUserList(String email) throws SQLException, ClassNotFoundException {
+        List<BorrowBooks> pendingList = borrowingDaoImpl.getUserList(email);
+        List<BorrowDTO> list = new ArrayList<>();
+
+        for(BorrowBooks b : pendingList){
+            UserDTO user = new UserDTO(b.getUser().getName(), b.getUser().getEmail(), b.getUser().getPassword(), b.getUser().getTelephone(), null);
+            BookDTO book = new BookDTO(b.getBook().getId(), b.getBook().getTitle(), b.getBook().getAuthor(), b.getBook().getGenre(), b.getBook().getStatus(), null);
+            list.add(new BorrowDTO(b.getId(),user,book,b.getBorrowDate(),b.getReturnDate(),b.getStatus()));
+        }
+        return list;
+    }
+
+    @Override
+    public List<BorrowDTO> getNotReturnList(String date) throws SQLException, ClassNotFoundException {
+        List<BorrowBooks> pendingList = borrowingDaoImpl.getNotReturnList(date);
+        List<BorrowDTO> list = new ArrayList<>();
+
+        for(BorrowBooks b : pendingList){
+            UserDTO user = new UserDTO(b.getUser().getName(), b.getUser().getEmail(), b.getUser().getPassword(), b.getUser().getTelephone(), null);
+            BookDTO book = new BookDTO(b.getBook().getId(), b.getBook().getTitle(), b.getBook().getAuthor(), b.getBook().getGenre(), b.getBook().getStatus(), null);
+            list.add(new BorrowDTO(b.getId(),user,book,b.getBorrowDate(),b.getReturnDate(),b.getStatus()));
+        }
+        return list;
+    }
 }
