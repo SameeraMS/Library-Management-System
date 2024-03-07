@@ -1,0 +1,23 @@
+#txtUsername, #txtPassword, #txtPassField{
+    -fx-prompt-text-fill: #689cd9;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-text-fill: black;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-background-color: rgba(255, 255, 255, 0.61);
+    -fx-border-color: #689cd9;
+    -fx-border-width: 1px;
+}
+
+.signup{
+    -fx-prompt-text-fill: #689cd9;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-text-fill: black;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-background-color: rgba(255, 255, 255, 0.61);
+    -fx-border-color: #689cd9;
+    -fx-border-width: 1px;
+}

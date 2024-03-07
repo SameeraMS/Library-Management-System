@@ -6,7 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -25,11 +27,13 @@ public class LoginFormController {
     public TextField txtUsername;
     public TextField txtPassword;
     public ComboBox<String> cmbType;
+    public PasswordField txtPassField;
 
     AdminBO adminBoImpl = (AdminBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
     UserBO userBoImpl = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
     public void initialize() {
+        txtPassword.setVisible(false);
         cmbType.getItems().addAll("Admin", "User");
     }
 
@@ -119,5 +123,25 @@ public class LoginFormController {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void showOnAction(ActionEvent actionEvent) {
+        if (txtPassField.isVisible()) {
+            txtPassField.setVisible(false);
+            txtPassword.setVisible(true);
+        } else {
+            txtPassField.setVisible(true);
+            txtPassword.setVisible(false);
+        }
+    }
+
+    public void setToTxtFieldOnAction(KeyEvent event) {
+        String text = txtPassField.getText();
+        txtPassword.setText(text);
+    }
+
+    public void setToPassFieldOnAction(KeyEvent event) {
+        String text = txtPassword.getText();
+        txtPassField.setText(text);
     }
 }

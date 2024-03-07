@@ -1,0 +1,29 @@
+.login{
+    -fx-background-color: #1A80E5;
+    -fx-font-style: bolder;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial Black";
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.signup{
+    -fx-background-color: #1A80E5;
+    -fx-font-style: bolder;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial Black";
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+#btneye{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-style: none;
+    -fx-background-insets: 0;
+}

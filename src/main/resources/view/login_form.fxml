@@ -1,25 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="630.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LoginFormController">
+<AnchorPane fx:id="root" prefHeight="596.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LoginFormController">
    <children>
-      <Label layoutX="345.0" layoutY="36.0" text="LOGIN">
+      <ImageView fitHeight="649.0" fitWidth="900.0" layoutX="-72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/ready-back-school.jpg" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="loginAnc" arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="503.0" layoutX="328.0" layoutY="33.0" opacity="0.5" stroke="#1a80e5" strokeType="INSIDE" strokeWidth="0.0" width="437.0" />
+      <Label layoutX="458.0" layoutY="69.0" text="Sign in">
          <font>
-            <Font size="54.0" />
+            <Font name="Arial Black" size="48.0" />
          </font>
       </Label>
-      <TextField fx:id="txtUsername" layoutX="272.0" layoutY="166.0" onAction="#usernameOnAction" prefHeight="46.0" prefWidth="303.0" promptText="Username" />
-      <TextField fx:id="txtPassword" layoutX="272.0" layoutY="241.0" onAction="#passwordOnAction" prefHeight="46.0" prefWidth="303.0" promptText="Password" />
-      <Button layoutX="410.0" layoutY="331.0" mnemonicParsing="false" onAction="#loginOnAction" text="Login" />
-      <Label layoutX="294.0" layoutY="391.0" text="Don't Have an Account..? " />
-      <Label layoutX="443.0" layoutY="391.0" onMouseClicked="#signupOnAction" text="Sign up Here" />
-      <Label layoutX="279.0" layoutY="307.0" onMouseClicked="#forgotpassOnAction" text="Forgot Password?" />
-      <ComboBox fx:id="cmbType" layoutX="349.0" layoutY="119.0" prefWidth="150.0" />
+      <TextField fx:id="txtUsername" layoutX="395.0" layoutY="221.0" onAction="#usernameOnAction" prefHeight="46.0" prefWidth="303.0" promptText="Username" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="txtPassword" layoutX="395.0" layoutY="296.0" onAction="#passwordOnAction" onKeyTyped="#setToPassFieldOnAction" prefHeight="46.0" prefWidth="303.0" promptText="Password" stylesheets="@../styles/textfield.css" />
+      <Label layoutX="402.0" layoutY="362.0" onMouseClicked="#forgotpassOnAction" text="Forgot Password?" textFill="#1a80e5">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Label>
+      <ComboBox fx:id="cmbType" layoutX="448.0" layoutY="165.0" prefHeight="36.0" prefWidth="170.0" promptText="Select" stylesheets="@../styles/combobox.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
+      <Button layoutX="395.0" layoutY="398.0" mnemonicParsing="false" onAction="#loginOnAction" prefHeight="34.0" prefWidth="303.0" styleClass="login" stylesheets="@../styles/button.css" text="Log in">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="480.0" layoutY="442.0" text="New User?">
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="564.0" layoutY="442.0" onMouseClicked="#signupOnAction" text="Sign up ">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="Arial Black" size="14.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="txtPassField" layoutX="395.0" layoutY="296.0" onKeyTyped="#setToTxtFieldOnAction" prefHeight="46.0" prefWidth="303.0" promptText="Password" stylesheets="@../styles/textfield.css" />
+      <JFXButton fx:id="btneye" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="698.0" layoutY="301.0" onAction="#showOnAction" text=" ">
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/icons/eye.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

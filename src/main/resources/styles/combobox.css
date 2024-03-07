@@ -1,0 +1,21 @@
+#cmbType{
+    -fx-pref-width: 200px;
+    -fx-prompt-text-fill: #689cd9;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-text-fill: black;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-background-color: rgba(255, 255, 255, 0.61);
+}
+
+.signup{
+    -fx-pref-width: 200px;
+    -fx-prompt-text-fill: #689cd9;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-text-fill: black;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-background-color: rgba(255, 255, 255, 0.61);
+}
