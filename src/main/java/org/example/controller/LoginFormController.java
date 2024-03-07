@@ -38,7 +38,7 @@ public class LoginFormController {
     }
 
     public void usernameOnAction(ActionEvent actionEvent) {
-        txtPassword.requestFocus();
+        txtPassField.requestFocus();
     }
 
     public void passwordOnAction(ActionEvent actionEvent) {
@@ -143,5 +143,9 @@ public class LoginFormController {
     public void setToPassFieldOnAction(KeyEvent event) {
         String text = txtPassword.getText();
         txtPassField.setText(text);
+    }
+
+    public void passFieldOnAction(ActionEvent actionEvent) {
+        loginOnAction(actionEvent);
     }
 }

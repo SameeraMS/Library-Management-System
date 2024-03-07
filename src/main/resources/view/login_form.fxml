@@ -60,7 +60,7 @@
             <Font name="Arial Black" size="14.0" />
          </font>
       </Label>
-      <PasswordField fx:id="txtPassField" layoutX="395.0" layoutY="296.0" onKeyTyped="#setToTxtFieldOnAction" prefHeight="46.0" prefWidth="303.0" promptText="Password" stylesheets="@../styles/textfield.css" />
+      <PasswordField fx:id="txtPassField" layoutX="395.0" layoutY="296.0" onAction="#passFieldOnAction" onKeyTyped="#setToTxtFieldOnAction" prefHeight="46.0" prefWidth="303.0" promptText="Password" stylesheets="@../styles/textfield.css" />
       <JFXButton fx:id="btneye" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="698.0" layoutY="301.0" onAction="#showOnAction" text=" ">
          <graphic>
             <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
