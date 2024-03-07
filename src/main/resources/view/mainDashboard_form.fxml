@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1440.0" stylesheets="@../styles/anchorpane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.MainDashboardFormController">
    <children>
@@ -13,23 +14,84 @@
             <Image url="@../assests/images/libfull.jpg" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="changePain" layoutX="400.0" layoutY="16.0" prefHeight="764.0" prefWidth="1029.0" stylesheets="@../styles/anchorpane.css" />
+      <AnchorPane fx:id="changePain" layoutX="400.0" layoutY="16.0" prefHeight="764.0" prefWidth="1025.0" stylesheets="@../styles/anchorpane.css" />
       <AnchorPane fx:id="anc" layoutX="16.0" layoutY="16.0" prefHeight="764.0" prefWidth="365.0" stylesheets="@../styles/anchorpane.css">
          <children>
             <Label fx:id="lblUsername" layoutX="140.0" layoutY="34.0" />
-            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="128.0" onAction="#dashboardOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Dashboard" />
-            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="368.0" onAction="#booksOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Books Manage" />
-            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="448.0" onAction="#branchOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Branches" />
-            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="528.0" onAction="#userOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Users" />
-            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="288.0" onAction="#borrowOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Borrowing Details" />
-            <JFXButton fx:id="btnLogOut" buttonType="RAISED" layoutX="12.0" layoutY="697.0" onAction="#logOutOnAction" prefHeight="62.0" prefWidth="340.0" text="Log out" />
-            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="208.0" onAction="#UserbooksOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Books" />
-            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="608.0" onAction="#settingsOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Settings" />
-            <ImageView fitHeight="83.0" fitWidth="77.0" layoutX="16.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="83.0" fitWidth="77.0" layoutX="25.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assests/images/logo.jpg" />
                </image>
             </ImageView>
+            <JFXButton alignment="CENTER" buttonType="RAISED" graphicTextGap="80.0" layoutX="12.0" layoutY="128.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#dashboardOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Dashboard">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/images/icons/icons8-home-100.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton fx:id="btnBookManage" buttonType="RAISED" graphicTextGap="45.0" layoutX="12.0" layoutY="368.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#booksOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Books Manage">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/images/icons/icons8-books-100.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton fx:id="btnBranch" buttonType="RAISED" graphicTextGap="89.0" layoutX="12.0" layoutY="448.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#branchOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Branches">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/images/icons/icons8-active-directory-100.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton fx:id="btnUser" buttonType="RAISED" graphicTextGap="121.0" layoutX="12.0" layoutY="528.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#userOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Users">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/images/icons/icons8-users-100.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton buttonType="RAISED" graphicTextGap="17.0" layoutX="12.0" layoutY="288.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#borrowOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Borrowing Details">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/images/icons/icons8-details-100.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton fx:id="btnLogOut" buttonType="RAISED" layoutX="12.0" layoutY="697.0" onAction="#logOutOnAction" prefHeight="62.0" prefWidth="340.0" text="Log out">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/images/icons/icons8-users-100-2.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton buttonType="RAISED" graphicTextGap="119.0" layoutX="12.0" layoutY="208.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#UserbooksOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Books">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/images/icons/icons8-book-100.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton fx:id="btnSettings" buttonType="RAISED" layoutX="12.0" layoutY="608.0" onAction="#settingsOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Settings">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assests/images/icons/icons8-settings-100.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <Label fx:id="lblWho" layoutX="295.0" layoutY="16.0">
+               <font>
+                  <Font size="4.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

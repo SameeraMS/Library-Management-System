@@ -61,7 +61,7 @@ public class LoginFormController {
                         new Alert(Alert.AlertType.ERROR, "Invalid username or password").show();
                     } else{
                         if (search.getPassword().equals(password)) {
-                            login(search.getName());
+                            login(search.getName(), "User");
                             new Alert(Alert.AlertType.CONFIRMATION, "Login Successful").show();
                         } else {
                             new Alert(Alert.AlertType.ERROR, "Invalid username or password").show();
@@ -78,7 +78,7 @@ public class LoginFormController {
                         new Alert(Alert.AlertType.ERROR, "Invalid username or password").show();
                     } else{
                         if (search.getPassword().equals(password)) {
-                            login(search.getName());
+                            login(search.getName(), "Admin");
                             new Alert(Alert.AlertType.CONFIRMATION, "Login Successful").show();
                         } else {
                             new Alert(Alert.AlertType.ERROR, "Invalid username or password").show();
@@ -91,13 +91,14 @@ public class LoginFormController {
         }
     }
 
-    public void login(String name) throws IOException {
+    public void login(String name, String status) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/mainDashboard_form.fxml"));
         Parent main = fxmlLoader.load();
 
         MainDashboardFormController dash =  fxmlLoader.getController();
         dash.lblUsername.setText(name);
+        dash.lblWho.setText(status);
         dash.setEmail(txtUsername.getText());
         dash.setType(cmbType.getValue());
        // dash.btnHide();
@@ -107,6 +108,7 @@ public class LoginFormController {
         stage.setScene(scene);
         stage.setTitle("Dashboard");
         stage.centerOnScreen();
+        dash.initialize();
     }
 
     public void signupOnAction(MouseEvent mouseEvent) throws IOException {

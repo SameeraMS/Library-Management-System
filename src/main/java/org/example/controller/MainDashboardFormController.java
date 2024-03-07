@@ -19,6 +19,10 @@ public class MainDashboardFormController {
     public Label lblUsername;
     public AnchorPane root;
     public JFXButton btnSettings;
+    public Label lblWho;
+    public JFXButton btnBookManage;
+    public JFXButton btnBranch;
+    public JFXButton btnUser;
     @Setter
     private String email;
 
@@ -26,14 +30,24 @@ public class MainDashboardFormController {
     private String type;
 
     public void initialize() {
-
-    }
-
-    public void btnHide(){
-        if (type.equals("Admin")) {
-            btnSettings.setVisible(false);
+        lblWho.setVisible(false);
+        String text = lblWho.getText();
+        btnBranch.setVisible(true);
+        btnBookManage.setVisible(true);
+        btnUser.setVisible(true);
+        switch (text) {
+            case "Admin":
+                btnSettings.setVisible(false);
+                break;
+            default:
+                btnBranch.setVisible(false);
+                btnBookManage.setVisible(false);
+                btnUser.setVisible(false);
+                break;
         }
     }
+
+
     public void booksOnAction(ActionEvent actionEvent) {
         changeForm("/view/admin/bookMange_form.fxml");
     }
