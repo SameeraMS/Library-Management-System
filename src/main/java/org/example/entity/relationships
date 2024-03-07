@@ -1,3 +1,4 @@
 User - Branch  ->  one to many
 Book - Branch  ->  one to many
-User - Book  -> many to many
+User - BorrowBooks  -> one to many
+Book - BorrowBooks  -> one to many
