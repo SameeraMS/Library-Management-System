@@ -27,3 +27,21 @@
     -fx-border-style: none;
     -fx-background-insets: 0;
 }
+
+.dashboard{
+    -fx-background-color: white;
+    -fx-font-style: bolder;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial Black";
+    -fx-text-fill: rgba(0, 0, 0, 0.56);
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10, 0 , 1 , 1 );
+    -fx-transition: all 0.3s;
+}
+
+.dashboard:hover{
+    -fx-background-color: rgba(255, 255, 255, 0.71);
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+}

@@ -1,5 +1,5 @@
 #txtUsername, #txtPassword, #txtPassField{
-    -fx-prompt-text-fill: #689cd9;
+    -fx-prompt-text-fill: black;
     -fx-font-size: 14px;
     -fx-font-family: "Arial";
     -fx-text-fill: black;
@@ -11,7 +11,7 @@
 }
 
 .signup{
-    -fx-prompt-text-fill: #689cd9;
+    -fx-prompt-text-fill: black;
     -fx-font-size: 14px;
     -fx-font-family: "Arial";
     -fx-text-fill: black;

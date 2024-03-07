@@ -2,19 +2,35 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.MainDashboardFormController">
+<AnchorPane fx:id="root" prefHeight="800.0" prefWidth="1440.0" stylesheets="@../styles/anchorpane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.MainDashboardFormController">
    <children>
-      <AnchorPane fx:id="changePain" layoutX="400.0" prefHeight="800.0" prefWidth="1040.0" style="-fx-background-color: yellow;" />
-      <Label fx:id="lblUsername" layoutX="144.0" layoutY="44.0" />
-      <JFXButton layoutX="19.0" layoutY="396.0" onAction="#booksOnAction" prefHeight="62.0" prefWidth="365.0" text="Books Manage" />
-      <JFXButton layoutX="23.0" layoutY="479.0" onAction="#branchOnAction" prefHeight="62.0" prefWidth="365.0" text="Branches" />
-      <JFXButton layoutX="27.0" layoutY="552.0" onAction="#userOnAction" prefHeight="62.0" prefWidth="365.0" text="Users" />
-      <JFXButton layoutX="18.0" layoutY="330.0" onAction="#borrowOnAction" prefHeight="62.0" prefWidth="365.0" text="Borrowing" />
-      <JFXButton layoutX="20.0" layoutY="707.0" onAction="#logOutOnAction" prefHeight="62.0" prefWidth="365.0" text="Log out" />
-      <JFXButton layoutX="11.0" layoutY="74.0" onAction="#dashboardOnAction" prefHeight="62.0" prefWidth="365.0" text="Dashboard" />
-      <JFXButton layoutX="17.0" layoutY="145.0" onAction="#UserbooksOnAction" prefHeight="62.0" prefWidth="365.0" text="Books" />
-      <JFXButton layoutX="25.0" layoutY="217.0" onAction="#settingsOnAction" prefHeight="62.0" prefWidth="365.0" text="Settings" />
+      <ImageView fitHeight="399.0" fitWidth="1440.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assests/images/wave.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="changePain" layoutX="400.0" layoutY="8.0" prefHeight="774.0" prefWidth="1029.0" stylesheets="@../styles/anchorpane.css" />
+      <AnchorPane fx:id="anc" layoutX="16.0" layoutY="16.0" prefHeight="764.0" prefWidth="365.0" stylesheets="@../styles/anchorpane.css">
+         <children>
+            <Label fx:id="lblUsername" layoutX="140.0" layoutY="34.0" />
+            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="128.0" onAction="#dashboardOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Dashboard" />
+            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="368.0" onAction="#booksOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Books Manage" />
+            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="448.0" onAction="#branchOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Branches" />
+            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="528.0" onAction="#userOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Users" />
+            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="288.0" onAction="#borrowOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Borrowing Details" />
+            <JFXButton fx:id="btnLogOut" buttonType="RAISED" layoutX="12.0" layoutY="697.0" onAction="#logOutOnAction" prefHeight="62.0" prefWidth="340.0" text="Log out" />
+            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="208.0" onAction="#UserbooksOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Books" />
+            <JFXButton buttonType="RAISED" layoutX="12.0" layoutY="608.0" onAction="#settingsOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Settings" />
+            <ImageView fitHeight="83.0" fitWidth="77.0" layoutX="16.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assests/images/logo.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

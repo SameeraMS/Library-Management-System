@@ -1,0 +1,18 @@
+#root{
+    -fx-background-color: white;
+
+}
+
+#changePain{
+    -fx-background-color: white;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10, 0 , 1 , 1 );
+}
+
+#anc{
+    -fx-background-color: white;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.7) , 10, 0 , 1 , 1 );
+}

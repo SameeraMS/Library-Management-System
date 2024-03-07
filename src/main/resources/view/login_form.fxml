@@ -17,7 +17,7 @@
    <children>
       <ImageView fitHeight="649.0" fitWidth="900.0" layoutX="-72.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assests/images/ready-back-school.jpg" />
+            <Image url="@../assests/images/ready-back-school.jpg" />
          </image>
       </ImageView>
       <Rectangle fx:id="loginAnc" arcHeight="40.0" arcWidth="40.0" fill="WHITE" height="503.0" layoutX="328.0" layoutY="33.0" opacity="0.5" stroke="#1a80e5" strokeType="INSIDE" strokeWidth="0.0" width="437.0" />
@@ -65,7 +65,7 @@
          <graphic>
             <ImageView fitHeight="26.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@assests/images/icons/eye.png" />
+                  <Image url="@../assests/images/icons/eye.png" />
                </image>
             </ImageView>
          </graphic>
