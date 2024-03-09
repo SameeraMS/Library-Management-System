@@ -6,24 +6,25 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="764.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.BranchFormController">
    <children>
-      <Label layoutX="50.0" layoutY="20.0" text="MANAGE BRANCHES">
+      <Label layoutX="591.0" layoutY="3.0" text="MANAGE BRANCHES">
          <font>
-            <Font name="System Bold" size="37.0" />
+            <Font name="Arial Black" size="37.0" />
          </font>
       </Label>
-      <TextField fx:id="txtId" layoutX="257.0" layoutY="145.0" onAction="#txtIdOnAction" prefHeight="37.0" prefWidth="232.0" promptText="Branch Id" />
-      <TextField fx:id="txtLocation" layoutX="599.0" layoutY="145.0" onAction="#txtLocationOnAction" prefHeight="37.0" prefWidth="232.0" promptText="Location" />
-      <TextField fx:id="txtTelephone" layoutX="257.0" layoutY="209.0" prefHeight="37.0" prefWidth="232.0" promptText="Telephone " />
-      <TextField fx:id="txtEmail" layoutX="599.0" layoutY="209.0" prefHeight="37.0" prefWidth="232.0" promptText="Email" />
-      <TextField fx:id="txtAddress" layoutX="257.0" layoutY="263.0" prefHeight="37.0" prefWidth="232.0" promptText="Address" />
-      <ComboBox fx:id="cmbBranch" layoutX="450.0" layoutY="90.0" onAction="#cmbBranchOnAction" prefWidth="150.0" promptText="Branches" />
-      <TableView fx:id="tblBranch" layoutX="117.0" layoutY="407.0" prefHeight="313.0" prefWidth="813.0">
+      <TextField fx:id="txtId" layoutX="221.0" layoutY="145.0" onAction="#txtIdOnAction" prefHeight="37.0" prefWidth="262.0" promptText="Branch Id" styleClass="branch" stylesheets="@../../styles/textfield.css" />
+      <TextField fx:id="txtLocation" layoutX="660.0" layoutY="145.0" onAction="#txtLocationOnAction" prefHeight="37.0" prefWidth="262.0" promptText="Location" styleClass="branch" stylesheets="@../../styles/textfield.css" />
+      <TextField fx:id="txtTelephone" layoutX="221.0" layoutY="205.0" prefHeight="37.0" prefWidth="262.0" promptText="Telephone " styleClass="branch" stylesheets="@../../styles/textfield.css" />
+      <TextField fx:id="txtEmail" layoutX="660.0" layoutY="205.0" prefHeight="37.0" prefWidth="262.0" promptText="Email" styleClass="branch" stylesheets="@../../styles/textfield.css" />
+      <TextField fx:id="txtAddress" layoutX="221.0" layoutY="263.0" prefHeight="37.0" prefWidth="262.0" promptText="Address" styleClass="branch" stylesheets="@../../styles/textfield.css" />
+      <ComboBox fx:id="cmbBranch" layoutX="450.0" layoutY="86.0" onAction="#cmbBranchOnAction" prefHeight="30.0" prefWidth="168.0" promptText="Branches" styleClass="branch" stylesheets="@../../styles/combobox.css" />
+      <TableView fx:id="tblBranch" layoutX="117.0" layoutY="407.0" prefHeight="313.0" prefWidth="813.0" stylesheets="@../../styles/table.css">
         <columns>
           <TableColumn prefWidth="148.27190399169922" text="Id" />
           <TableColumn prefWidth="192.54385375976562" text="Location" />
@@ -31,9 +32,43 @@
             <TableColumn minWidth="0.0" prefWidth="257.81732177734375" text="Email" />
         </columns>
       </TableView>
-      <Button layoutX="272.0" layoutY="340.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="36.0" prefWidth="91.0" text="Save" />
-      <Button layoutX="414.0" layoutY="343.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="36.0" prefWidth="91.0" text="Update" />
-      <Button layoutX="910.0" layoutY="736.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="36.0" prefWidth="91.0" text="Delete" />
-      <Button layoutX="559.0" layoutY="345.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="36.0" prefWidth="91.0" text="clear" />
+      <Button fx:id="saveBranch" layoutX="272.0" layoutY="340.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="36.0" prefWidth="91.0" styleClass="branch" stylesheets="@../../styles/button.css" text="Save" />
+      <Button fx:id="updateBranch" layoutX="425.0" layoutY="340.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="36.0" prefWidth="91.0" styleClass="branch" stylesheets="@../../styles/button.css" text="Update" />
+      <Button fx:id="deleteBranch" layoutX="735.0" layoutY="340.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="36.0" prefWidth="91.0" styleClass="branch" stylesheets="@../../styles/button.css" text="Delete" />
+      <Button fx:id="clearBtn" layoutX="585.0" layoutY="340.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="36.0" prefWidth="91.0" styleClass="branch" stylesheets="@../../styles/button.css" text="clear" />
+      <Label layoutX="98.0" layoutY="156.0" text="Branch Id :">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="98.0" layoutY="216.0" text="Telephone No :">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="103.0" layoutY="274.0" text="Address :">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="560.0" layoutY="155.0" text="Location :">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="560.0" layoutY="216.0" text="Email :">
+         <font>
+            <Font name="Arial Bold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="26.0" fitWidth="21.0" layoutX="15.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assests/images/icons/icons8-home-100.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="41.0" layoutY="10.0" text="/ Branches">
+         <font>
+            <Font name="Arial Black" size="17.0" />
+         </font></Label>
    </children>
 </AnchorPane>

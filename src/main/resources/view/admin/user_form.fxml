@@ -16,8 +16,8 @@
             <Font name="System Bold" size="37.0" />
          </font>
       </Label>
-      <TextField fx:id="txtSearch" layoutX="261.0" layoutY="116.0" onAction="#txtSearchOnAction" prefHeight="46.0" prefWidth="271.0" promptText="Search" />
-      <TableView fx:id="tblUser" layoutX="43.0" layoutY="215.0" onMouseClicked="#tblOnAction" prefHeight="468.0" prefWidth="573.0">
+      <TextField fx:id="txtSearch" layoutX="261.0" layoutY="116.0" onAction="#txtSearchOnAction" prefHeight="46.0" prefWidth="271.0" promptText="Search" styleClass="branch" stylesheets="@../../styles/textfield.css" />
+      <TableView fx:id="tblUser" layoutX="43.0" layoutY="215.0" onMouseClicked="#tblOnAction" prefHeight="468.0" prefWidth="573.0" stylesheets="@../../styles/table.css">
         <columns>
           <TableColumn prefWidth="197.0" text="email" />
           <TableColumn minWidth="4.0" prefWidth="132.0" text="name" />
@@ -25,13 +25,13 @@
             <TableColumn prefWidth="115.0" text="branch" />
         </columns>
       </TableView>
-      <TextField fx:id="txtMail" editable="false" layoutX="671.0" layoutY="263.0" prefHeight="46.0" prefWidth="255.0" promptText="Email" />
-      <TextField fx:id="txtName" layoutX="671.0" layoutY="327.0" prefHeight="46.0" prefWidth="255.0" promptText="Name" />
-      <TextField fx:id="txtTelephone" layoutX="671.0" layoutY="389.0" prefHeight="46.0" prefWidth="255.0" promptText="Telephone" />
-      <ComboBox fx:id="cmbBranch" layoutX="713.0" layoutY="477.0" prefWidth="150.0" promptText="Branch" />
-      <Button layoutX="660.0" layoutY="551.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="90.0" text="Update" />
-      <Button layoutX="807.0" layoutY="551.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="36.0" prefWidth="90.0" text="Delete" />
-      <Button layoutX="558.0" layoutY="121.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="36.0" prefWidth="90.0" text="Search" />
-      <ComboBox fx:id="cmbSearchBy" layoutX="89.0" layoutY="126.0" prefHeight="27.0" prefWidth="135.0" promptText="Search by" />
+      <TextField fx:id="txtMail" editable="false" layoutX="671.0" layoutY="263.0" prefHeight="46.0" prefWidth="255.0" promptText="Email" styleClass="branch" stylesheets="@../../styles/textfield.css" />
+      <TextField fx:id="txtName" layoutX="671.0" layoutY="327.0" prefHeight="46.0" prefWidth="255.0" promptText="Name" styleClass="branch" stylesheets="@../../styles/textfield.css" />
+      <TextField fx:id="txtTelephone" layoutX="671.0" layoutY="389.0" prefHeight="46.0" prefWidth="255.0" promptText="Telephone" styleClass="branch" stylesheets="@../../styles/textfield.css" />
+      <ComboBox fx:id="cmbBranch" layoutX="713.0" layoutY="477.0" prefWidth="150.0" promptText="Branch" styleClass="branch" stylesheets="@../../styles/combobox.css" />
+      <Button fx:id="updatebtn" layoutX="660.0" layoutY="551.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="90.0" styleClass="branch" stylesheets="@../../styles/button.css" text="Update" />
+      <Button fx:id="deletebtn" layoutX="807.0" layoutY="551.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="36.0" prefWidth="90.0" styleClass="branch" stylesheets="@../../styles/button.css" text="Delete" />
+      <Button fx:id="searchbtn" layoutX="558.0" layoutY="121.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="36.0" prefWidth="90.0" styleClass="branch" stylesheets="@../../styles/button.css" text="Search" />
+      <ComboBox fx:id="cmbSearchBy" layoutX="89.0" layoutY="126.0" prefHeight="27.0" prefWidth="135.0" promptText="Search by" styleClass="branch" stylesheets="@../../styles/combobox.css" />
    </children>
 </AnchorPane>
