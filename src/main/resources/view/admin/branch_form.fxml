@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -24,7 +25,7 @@
       <TextField fx:id="txtEmail" layoutX="660.0" layoutY="205.0" prefHeight="37.0" prefWidth="262.0" promptText="Email" styleClass="branch" stylesheets="@../../styles/textfield.css" />
       <TextField fx:id="txtAddress" layoutX="221.0" layoutY="263.0" prefHeight="37.0" prefWidth="262.0" promptText="Address" styleClass="branch" stylesheets="@../../styles/textfield.css" />
       <ComboBox fx:id="cmbBranch" layoutX="450.0" layoutY="86.0" onAction="#cmbBranchOnAction" prefHeight="30.0" prefWidth="168.0" promptText="Branches" styleClass="branch" stylesheets="@../../styles/combobox.css" />
-      <TableView fx:id="tblBranch" layoutX="117.0" layoutY="407.0" prefHeight="313.0" prefWidth="813.0" stylesheets="@../../styles/table.css">
+      <TableView fx:id="tblBranch" layoutX="117.0" layoutY="407.0" onSort="#tblOnAction" prefHeight="313.0" prefWidth="813.0" stylesheets="@../../styles/table.css">
         <columns>
           <TableColumn prefWidth="148.27190399169922" text="Id" />
           <TableColumn prefWidth="192.54385375976562" text="Location" />
@@ -32,10 +33,26 @@
             <TableColumn minWidth="0.0" prefWidth="257.81732177734375" text="Email" />
         </columns>
       </TableView>
-      <Button fx:id="saveBranch" layoutX="272.0" layoutY="340.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="36.0" prefWidth="91.0" styleClass="branch" stylesheets="@../../styles/button.css" text="Save" />
-      <Button fx:id="updateBranch" layoutX="425.0" layoutY="340.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="36.0" prefWidth="91.0" styleClass="branch" stylesheets="@../../styles/button.css" text="Update" />
-      <Button fx:id="deleteBranch" layoutX="735.0" layoutY="340.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="36.0" prefWidth="91.0" styleClass="branch" stylesheets="@../../styles/button.css" text="Delete" />
-      <Button fx:id="clearBtn" layoutX="585.0" layoutY="340.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="36.0" prefWidth="91.0" styleClass="branch" stylesheets="@../../styles/button.css" text="clear" />
+      <Button fx:id="saveBranch" layoutX="272.0" layoutY="340.0" mnemonicParsing="false" onAction="#saveOnAction" prefHeight="36.0" prefWidth="91.0" stylesheets="@../../styles/button.css" text="Save">
+         <styleClass>
+            <String fx:value="branch" />
+            <String fx:value="save" />
+         </styleClass></Button>
+      <Button fx:id="updateBranch" layoutX="425.0" layoutY="340.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="36.0" prefWidth="91.0" stylesheets="@../../styles/button.css" text="Update">
+         <styleClass>
+            <String fx:value="branch" />
+            <String fx:value="update" />
+         </styleClass></Button>
+      <Button fx:id="deleteBranch" layoutX="735.0" layoutY="340.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="36.0" prefWidth="91.0" stylesheets="@../../styles/button.css" text="Delete">
+         <styleClass>
+            <String fx:value="branch" />
+            <String fx:value="delete" />
+         </styleClass></Button>
+      <Button fx:id="clearBtn" layoutX="585.0" layoutY="340.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="36.0" prefWidth="91.0" stylesheets="@../../styles/button.css" text="clear">
+         <styleClass>
+            <String fx:value="branch" />
+            <String fx:value="clear" />
+         </styleClass></Button>
       <Label layoutX="98.0" layoutY="156.0" text="Branch Id :">
          <font>
             <Font name="Arial Bold" size="14.0" />

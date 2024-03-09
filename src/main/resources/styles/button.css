@@ -64,39 +64,37 @@
     -fx-font-size: 16px;
 }
 
-#deleteBranch,#deletebtn{
+.delete{
     -fx-effect: dropshadow( gaussian , rgba(215, 40, 40, 0.7), 10, 0 , 3 , 3 );
 }
-#deletebtn:hover{
-    -fx-text-fill: #cc3232;
-}
-#deleteBranch:hover{
+.delete:hover{
     -fx-text-fill: #cc3232;
 }
 
-#updateBranch,#updatebtn{
+.update{
     -fx-effect: dropshadow( gaussian , rgb(238, 170, 36), 10, 0 , 3 , 3 );
 }
-#updateBranch:hover{
-    -fx-text-fill: #e6a524;
-}
-#updatebtn:hover{
+.update:hover{
     -fx-text-fill: #e6a524;
 }
 
-#saveBranch{
+
+.save{
     -fx-effect: dropshadow( gaussian , rgba(80, 229, 83, 0.7), 10, 0 , 3 , 3 );
 }
-#saveBranch:hover{
+.save:hover{
     -fx-text-fill: #48a22e;
 }
 
-#clearBtn,#searchbtn{
+.clear{
     -fx-effect: dropshadow( gaussian , rgb(47, 216, 238), 10, 0 , 3 , 3 );
 }
-#clearBtn:hover{
+.clear:hover{
     -fx-text-fill: #30d0e6;
 }
-#searchbtn:hover{
-    -fx-text-fill: #30d0e6;
+.search{
+    -fx-effect: dropshadow( gaussian , rgb(62, 116, 218), 10, 0 , 3 , 3 );
+}
+.search:hover{
+    -fx-text-fill: #3e74da;
 }

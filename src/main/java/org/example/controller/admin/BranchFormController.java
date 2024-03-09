@@ -1,10 +1,8 @@
 package org.example.controller.admin;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BranchBO;
@@ -178,5 +176,19 @@ public class BranchFormController {
         txtTelephone.clear();
         txtEmail.clear();
         txtAddress.clear();
+    }
+
+    public void tblOnAction(SortEvent<TableView<BranchTm>> tableViewSortEvent) throws SQLException, ClassNotFoundException {
+
+            BranchTm branchTm = tblBranch.getSelectionModel().getSelectedItem();
+            txtId.setText(branchTm.getId());
+
+        BranchDTO search = branchBoImpl.search(branchTm.getId());
+        txtLocation.setText(search.getLocation());
+            txtTelephone.setText(String.valueOf(branchTm.getTelephone()));
+            txtEmail.setText(branchTm.getEmail());
+            txtAddress.setText(search.getAddress());
+
+
     }
 }
