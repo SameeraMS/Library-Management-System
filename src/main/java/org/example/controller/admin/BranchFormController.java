@@ -9,6 +9,7 @@ import org.example.bo.custom.BranchBO;
 import org.example.dto.BranchDTO;
 import org.example.dto.tm.BranchTm;
 
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -165,6 +166,7 @@ public class BranchFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "Deleted").show();
                 initialize();
             } catch (SQLException | ClassNotFoundException e) {
+                new Alert(Alert.AlertType.ERROR, "Something went wrong").show();
                 throw new RuntimeException(e);
             }
         }
@@ -178,17 +180,15 @@ public class BranchFormController {
         txtAddress.clear();
     }
 
-    public void tblOnAction(SortEvent<TableView<BranchTm>> tableViewSortEvent) throws SQLException, ClassNotFoundException {
 
-            BranchTm branchTm = tblBranch.getSelectionModel().getSelectedItem();
-            txtId.setText(branchTm.getId());
+    public void tblOnAction(javafx.scene.input.MouseEvent mouseEvent) throws SQLException, ClassNotFoundException {
+        BranchTm branchTm = tblBranch.getSelectionModel().getSelectedItem();
+        txtId.setText(branchTm.getId());
 
         BranchDTO search = branchBoImpl.search(branchTm.getId());
         txtLocation.setText(search.getLocation());
-            txtTelephone.setText(String.valueOf(branchTm.getTelephone()));
-            txtEmail.setText(branchTm.getEmail());
-            txtAddress.setText(search.getAddress());
-
-
+        txtTelephone.setText(String.valueOf(branchTm.getTelephone()));
+        txtEmail.setText(branchTm.getEmail());
+        txtAddress.setText(search.getAddress());
     }
 }

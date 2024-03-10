@@ -25,7 +25,7 @@
       <TextField fx:id="txtEmail" layoutX="660.0" layoutY="205.0" prefHeight="37.0" prefWidth="262.0" promptText="Email" styleClass="branch" stylesheets="@../../styles/textfield.css" />
       <TextField fx:id="txtAddress" layoutX="221.0" layoutY="263.0" prefHeight="37.0" prefWidth="262.0" promptText="Address" styleClass="branch" stylesheets="@../../styles/textfield.css" />
       <ComboBox fx:id="cmbBranch" layoutX="450.0" layoutY="86.0" onAction="#cmbBranchOnAction" prefHeight="30.0" prefWidth="168.0" promptText="Branches" styleClass="branch" stylesheets="@../../styles/combobox.css" />
-      <TableView fx:id="tblBranch" layoutX="117.0" layoutY="407.0" onSort="#tblOnAction" prefHeight="313.0" prefWidth="813.0" stylesheets="@../../styles/table.css">
+      <TableView fx:id="tblBranch" layoutX="117.0" layoutY="407.0" onMouseClicked="#tblOnAction" prefHeight="313.0" prefWidth="813.0" stylesheets="@../../styles/table.css">
         <columns>
           <TableColumn prefWidth="148.27190399169922" text="Id" />
           <TableColumn prefWidth="192.54385375976562" text="Location" />
