@@ -13,8 +13,8 @@ import java.time.LocalDate;
 @ToString
 public class BorrowTm {
     String id;
-    UserDTO user;
-    BookDTO book;
+    String user;
+    String book;
     LocalDate borrowDate;
     LocalDate returnDate;
     String status;

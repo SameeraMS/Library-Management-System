@@ -35,9 +35,10 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        Book search = search(id);
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        session.remove(id);
+        session.remove(search);
         transaction.commit();
         session.close();
         return true;

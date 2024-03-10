@@ -1,8 +1,9 @@
-package org.example.controller.admin;
+package org.example.controller.user;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lombok.Setter;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BorrowingBO;
 import org.example.dto.BorrowDTO;
@@ -11,24 +12,29 @@ import org.example.dto.tm.BorrowTm;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BorrowFormController {
+public class UserBorrowFormController {
     public TableView<BorrowTm> tblBorrow;
+
+    @Setter
+    private String email;
 
     BorrowingBO borrowingBO = (BorrowingBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BORROW);
 
 
     public void initialize() {
-        loadBorrowTable();
-        setCellValueFactory();
+        if (email != null) {
+            loadBorrowTable();
+            setCellValueFactory();
+        }
     }
 
     private void loadBorrowTable() {
         try {
             tblBorrow.getItems().clear();
-            List<BorrowDTO> all = borrowingBO.getAll();
+            List<BorrowDTO> all = borrowingBO.getUserList(email);
 
             for (BorrowDTO borrowDTO : all) {
-                tblBorrow.getItems().add(new BorrowTm(borrowDTO.getId(), borrowDTO.getUser().getName(), borrowDTO.getBook().getId()+"-"+borrowDTO.getBook().getTitle(), borrowDTO.getBorrowDate(), borrowDTO.getReturnDate(), borrowDTO.getStatus()));
+                tblBorrow.getItems().add(new BorrowTm(borrowDTO.getId(), borrowDTO.getUser().getName(), borrowDTO.getBook().getTitle(), borrowDTO.getBorrowDate(), borrowDTO.getReturnDate(), borrowDTO.getStatus()));
             }
 
         } catch (SQLException e) {
@@ -47,3 +53,4 @@ public class BorrowFormController {
         tblBorrow.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 }
+

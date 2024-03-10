@@ -13,7 +13,7 @@
             <Font name="Arial Black" size="30.0" />
          </font>
       </Label>
-      <TextField fx:id="txtOtp" layoutX="105.0" layoutY="161.0" prefHeight="46.0" prefWidth="303.0" promptText="Enter OTP" styleClass="signup" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="txtOtp" alignment="CENTER" layoutX="105.0" layoutY="161.0" prefHeight="46.0" prefWidth="303.0" promptText="Enter OTP" styleClass="signup" stylesheets="@../styles/textfield.css" />
       <Button layoutX="105.0" layoutY="233.0" mnemonicParsing="false" onAction="#btnSubmitOnAction" prefHeight="36.0" prefWidth="303.0" styleClass="signup" stylesheets="@../styles/button.css" text="Submit" />
       <Label layoutX="131.0" layoutY="79.0" opacity="0.54" prefHeight="44.0" prefWidth="251.0" text="Enter Verification Code">
          <font>

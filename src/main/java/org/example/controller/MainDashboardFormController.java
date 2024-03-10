@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.Setter;
 import org.example.controller.user.SettingsFormController;
+import org.example.controller.user.UserBorrowFormController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,8 +61,27 @@ public class MainDashboardFormController {
         changeForm("/view/admin/user_form.fxml");
     }
 
-    public void borrowOnAction(ActionEvent actionEvent) {
-        changeForm("/view/admin/borrow_form.fxml");
+    public void borrowOnAction(ActionEvent actionEvent) throws IOException {
+        String text = lblWho.getText();
+        switch (text) {
+            case "Admin":
+                changeForm("/view/admin/borrow_form.fxml");
+                break;
+            default:
+                FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/user/userBorrow_form.fxml"));
+                Parent main = fxmlLoader.load();
+
+                UserBorrowFormController user =  fxmlLoader.getController();
+                user.setEmail(email);
+                user.initialize();
+
+                changePain.getChildren().clear();
+                changePain.getChildren().add(main);
+                break;
+        }
+
+
+
     }
 
     public void dashboardOnAction(ActionEvent actionEvent) {
