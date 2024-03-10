@@ -1,7 +1,10 @@
 package org.example.controller.admin;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BorrowingBO;
@@ -13,6 +16,11 @@ import java.util.List;
 
 public class BorrowFormController {
     public TableView<BorrowTm> tblBorrow;
+    public TextField txtEmail;
+    public TextField txtBorrowId;
+    public TextField txtUserMail;
+    public TextField txtBookId;
+    public ComboBox<String> cmbStatus;
 
     BorrowingBO borrowingBO = (BorrowingBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BORROW);
 
@@ -45,5 +53,20 @@ public class BorrowFormController {
         tblBorrow.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
         tblBorrow.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("returnDate"));
         tblBorrow.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("status"));
+    }
+
+    public void allOnAction(ActionEvent actionEvent) {
+    }
+
+    public void notReturnedOnAction(ActionEvent actionEvent) {
+    }
+
+    public void pendingOnAction(ActionEvent actionEvent) {
+    }
+
+    public void searchOnAction(ActionEvent actionEvent) {
+    }
+
+    public void updateOnAction(ActionEvent actionEvent) {
     }
 }
