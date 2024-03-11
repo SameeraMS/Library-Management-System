@@ -98,3 +98,11 @@
 .search:hover{
     -fx-text-fill: #3e74da;
 }
+
+.borrow{
+    -fx-effect: dropshadow( gaussian , rgb(30, 32, 36), 10, 0 , 3 , 3 );
+}
+
+.borrow:hover{
+    -fx-text-fill: #1e2024;
+}
