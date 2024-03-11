@@ -11,6 +11,7 @@ import org.example.entity.BorrowBooks;
 import org.example.entity.User;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,7 +90,7 @@ public class BorrowingBOImpl implements BorrowingBO {
     }
 
     @Override
-    public List<BorrowDTO> getNotReturnList(String date) throws SQLException, ClassNotFoundException {
+    public List<BorrowDTO> getNotReturnList(LocalDate date) throws SQLException, ClassNotFoundException {
         List<BorrowBooks> pendingList = borrowingDaoImpl.getNotReturnList(date);
         List<BorrowDTO> list = new ArrayList<>();
 

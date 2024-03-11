@@ -6,6 +6,7 @@ import org.example.dto.BorrowDTO;
 import org.example.entity.BorrowBooks;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface BorrowingBO extends SuperBO {
@@ -17,5 +18,5 @@ public interface BorrowingBO extends SuperBO {
     String generateNextId() throws SQLException, ClassNotFoundException;
     List<BorrowDTO> getPendingList() throws SQLException, ClassNotFoundException;
     List<BorrowDTO> getUserList(String email) throws SQLException, ClassNotFoundException;
-    List<BorrowDTO> getNotReturnList(String date) throws SQLException, ClassNotFoundException;
+    List<BorrowDTO> getNotReturnList(LocalDate date) throws SQLException, ClassNotFoundException;
 }

@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="764.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.BorrowFormController">
    <children>
-      <TableView fx:id="tblBorrow" layoutX="66.0" layoutY="128.0" prefHeight="524.0" prefWidth="893.0" stylesheets="@../../styles/table.css">
+      <TableView fx:id="tblBorrow" layoutX="66.0" layoutY="128.0" onMouseClicked="#tblOnAction" prefHeight="524.0" prefWidth="893.0" stylesheets="@../../styles/table.css">
         <columns>
           <TableColumn prefWidth="134.0" text="ID" />
           <TableColumn prefWidth="149.0" text="User" />

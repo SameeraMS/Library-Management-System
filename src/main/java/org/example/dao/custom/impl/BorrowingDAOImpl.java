@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class BorrowingDAOImpl implements BorrowingDAO {
@@ -107,10 +108,10 @@ public class BorrowingDAOImpl implements BorrowingDAO {
     }
 
     @Override
-    public List<BorrowBooks> getNotReturnList(String date) throws SQLException, ClassNotFoundException {
+    public List<BorrowBooks> getNotReturnList(LocalDate date) throws SQLException, ClassNotFoundException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        List<BorrowBooks> list = session.createQuery("FROM BorrowBooks WHERE returnDate >= :date").setParameter("date", date).list();
+        List<BorrowBooks> list = session.createQuery("FROM BorrowBooks WHERE returnDate <= :date and status='pending'").setParameter("date", date).list();
         transaction.commit();
         session.close();
         return list;

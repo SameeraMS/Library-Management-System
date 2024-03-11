@@ -6,12 +6,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BorrowingBO;
 import org.example.dto.BorrowDTO;
 import org.example.dto.tm.BorrowTm;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class BorrowFormController {
@@ -28,6 +30,13 @@ public class BorrowFormController {
     public void initialize() {
         loadBorrowTable();
         setCellValueFactory();
+        setCmbValues();
+    }
+
+    private void setCmbValues() {
+        cmbStatus.getItems().clear();
+        cmbStatus.getItems().add("Pending");
+        cmbStatus.getItems().add("Returned");
     }
 
     private void loadBorrowTable() {
@@ -56,17 +65,89 @@ public class BorrowFormController {
     }
 
     public void allOnAction(ActionEvent actionEvent) {
+        initialize();
     }
 
     public void notReturnedOnAction(ActionEvent actionEvent) {
+        LocalDate today = LocalDate.now();
+        try {
+            tblBorrow.getItems().clear();
+            List<BorrowDTO> all = borrowingBO.getNotReturnList(today);
+
+            for (BorrowDTO borrowDTO : all) {
+                tblBorrow.getItems().add(new BorrowTm(borrowDTO.getId(), borrowDTO.getUser().getName(), borrowDTO.getBook().getId()+"-"+borrowDTO.getBook().getTitle(), borrowDTO.getBorrowDate(), borrowDTO.getReturnDate(), borrowDTO.getStatus()));
+            }
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void pendingOnAction(ActionEvent actionEvent) {
+        try {
+            tblBorrow.getItems().clear();
+            List<BorrowDTO> all = borrowingBO.getPendingList();
+
+            for (BorrowDTO borrowDTO : all) {
+                tblBorrow.getItems().add(new BorrowTm(borrowDTO.getId(), borrowDTO.getUser().getName(), borrowDTO.getBook().getId()+"-"+borrowDTO.getBook().getTitle(), borrowDTO.getBorrowDate(), borrowDTO.getReturnDate(), borrowDTO.getStatus()));
+            }
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void searchOnAction(ActionEvent actionEvent) {
+        String mail = txtEmail.getText();
+        try {
+            tblBorrow.getItems().clear();
+            List<BorrowDTO> all = borrowingBO.getUserList(mail);
+
+            for (BorrowDTO borrowDTO : all) {
+                tblBorrow.getItems().add(new BorrowTm(borrowDTO.getId(), borrowDTO.getUser().getName(), borrowDTO.getBook().getId()+"-"+borrowDTO.getBook().getTitle(), borrowDTO.getBorrowDate(), borrowDTO.getReturnDate(), borrowDTO.getStatus()));
+            }
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+        if (txtBorrowId.getText().isEmpty() || txtUserMail.getText().isEmpty() || txtBookId.getText().isEmpty() || cmbStatus.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Missing Information").show();
+        } else {
+            String id = txtBorrowId.getText();
+            String status = cmbStatus.getValue();
+            try {
+                BorrowDTO search = borrowingBO.search(id);
+                BorrowDTO borrowDTO = new BorrowDTO(search.getId(), search.getUser(), search.getBook(), search.getBorrowDate(), search.getReturnDate(), status);
+                borrowingBO.update(borrowDTO);
+                new Alert(Alert.AlertType.CONFIRMATION, "Updated successfully!").show();
+                initialize();
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void tblOnAction(MouseEvent mouseEvent) {
+        BorrowTm tm = tblBorrow.getSelectionModel().getSelectedItem();
+        try {
+            BorrowDTO search = borrowingBO.search(tm.getId());
+            txtBorrowId.setText(search.getId());
+            txtUserMail.setText(search.getUser().getEmail());
+            txtBookId.setText(search.getBook().getId());
+            cmbStatus.setValue(search.getStatus());
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
