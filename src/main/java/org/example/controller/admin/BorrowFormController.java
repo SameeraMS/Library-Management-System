@@ -8,7 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import org.example.bo.BOFactory;
+import org.example.bo.custom.BookBO;
 import org.example.bo.custom.BorrowingBO;
+import org.example.dto.BookDTO;
 import org.example.dto.BorrowDTO;
 import org.example.dto.tm.BorrowTm;
 
@@ -25,6 +27,7 @@ public class BorrowFormController {
     public ComboBox<String> cmbStatus;
 
     BorrowingBO borrowingBO = (BorrowingBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BORROW);
+    BookBO bookBO = (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.BOOK);
 
 
     public void initialize() {
@@ -127,7 +130,10 @@ public class BorrowFormController {
             try {
                 BorrowDTO search = borrowingBO.search(id);
                 BorrowDTO borrowDTO = new BorrowDTO(search.getId(), search.getUser(), search.getBook(), search.getBorrowDate(), search.getReturnDate(), status);
+                BookDTO book = bookBO.search(search.getBook().getId());
+                book.setStatus("Available");
                 borrowingBO.update(borrowDTO);
+                bookBO.update(book);
                 new Alert(Alert.AlertType.CONFIRMATION, "Updated successfully!").show();
                 initialize();
             } catch (SQLException e) {

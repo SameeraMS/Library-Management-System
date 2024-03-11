@@ -13,7 +13,7 @@ public class BOFactory {
         return (boFactory == null) ? boFactory = new BOFactory() : boFactory;
     }
     public enum BOTypes {
-        USER, BOOK, BRANCH, ADMIN, BORROW
+        USER, BOOK, BRANCH, ADMIN, BORROW, BOOKBORROW
     }
 
     public SuperBO getBO(BOTypes boTypes){
@@ -28,6 +28,8 @@ public class BOFactory {
                 return new AdminBOImpl();
             case BORROW:
                 return new BorrowingBOImpl();
+            case BOOKBORROW:
+                return new BookBorrowBOImpl();
             default:
                 return null;
         }

@@ -9,11 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.Setter;
+import org.example.controller.user.BookFormController;
 import org.example.controller.user.SettingsFormController;
 import org.example.controller.user.UserBorrowFormController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 
 public class MainDashboardFormController {
     public AnchorPane changePain;
@@ -111,8 +113,16 @@ public class MainDashboardFormController {
 
     }
 
-    public void UserbooksOnAction(ActionEvent actionEvent) {
-        changeForm("/view/user/book_form.fxml");
+    public void UserbooksOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/user/book_form.fxml"));
+        Parent main = fxmlLoader.load();
+
+        BookFormController user =  fxmlLoader.getController();
+        user.txtUserMail.setText(email);
+        user.start();
+
+        changePain.getChildren().clear();
+        changePain.getChildren().add(main);
     }
 
     public void settingsOnAction(ActionEvent actionEvent) throws IOException, ClassNotFoundException {

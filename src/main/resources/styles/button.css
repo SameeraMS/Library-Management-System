@@ -106,3 +106,8 @@
 .borrow:hover{
     -fx-text-fill: #1e2024;
 }
+
+.borrow:pressed{
+    -fx-effect: dropshadow( gaussian , rgb(115, 152, 227), 10, 0 , 3 , 3 );
+}
+
