@@ -97,7 +97,9 @@ public class BookFormController {
         if (cmbBranch.getValue().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Select Branch First").show();
         } else{
-            List<BookDTO> bookDTOS = bookBO.searchByTitle(txtSearch.getText(), cmbBranch.getValue());
+            String location = cmbBranch.getValue();
+            BranchDTO branchDTO = branchBO.searchByLocation(location);
+            List<BookDTO> bookDTOS = bookBO.searchByTitle(txtSearch.getText(), branchDTO.getId());
 
             tblBook.getItems().clear();
             for (BookDTO bookDTO : bookDTOS) {
@@ -162,6 +164,7 @@ public class BookFormController {
         BranchDTO branchDTO = branchBO.searchByLocation(location);
         txtBranchLocation.setText(location);
 
+        if (branchDTO != null) {
             List<BookDTO> bookDTOS = bookBO.searchByBranch(branchDTO.getId());
 
             tblBook.getItems().clear();
@@ -169,7 +172,7 @@ public class BookFormController {
                 tblBook.getItems().add(new UserBorrowTm(bookDTO.getId(), bookDTO.getTitle(), bookDTO.getAuthor(), bookDTO.getGenre()));
             }
             setCellValueFactory();
-
+        }
     }
 
     private void setCellValueFactory() {

@@ -33,6 +33,7 @@ public class MainDashboardFormController {
     private String type;
 
     public void initialize() {
+        changeForm("/view/admin/dashboard_form.fxml");
         lblWho.setVisible(false);
         String text = lblWho.getText();
         btnBranch.setVisible(true);
@@ -81,9 +82,6 @@ public class MainDashboardFormController {
                 changePain.getChildren().add(main);
                 break;
         }
-
-
-
     }
 
     public void dashboardOnAction(ActionEvent actionEvent) {

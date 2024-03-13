@@ -64,6 +64,12 @@ public class BranchBOImpl implements BranchBO {
     @Override
     public BranchDTO searchByLocation(String location) throws SQLException, ClassNotFoundException{
         Branch branch = branchDaoImpl.searchByLocation(location);
-        return new BranchDTO(branch.getId(),branch.getLocation(),branch.getTelephone(),branch.getEmail(),branch.getAddress());
+
+        if (branch == null) {
+            return null;
+        } else {
+            return new BranchDTO(branch.getId(),branch.getLocation(),branch.getTelephone(),branch.getEmail(),branch.getAddress());
+        }
     }
+
 }
