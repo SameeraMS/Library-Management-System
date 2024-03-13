@@ -13,6 +13,7 @@ import org.example.bo.custom.UserBO;
 import org.example.dto.BranchDTO;
 import org.example.dto.UserDTO;
 import org.example.dto.tm.UserTm;
+import org.example.regex.Regex;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -69,26 +70,29 @@ public class UserFormController {
     }
 
     public void txtSearchOnAction(ActionEvent actionEvent) {
+        String searchby = cmbSearchBy.getValue();
         try{
-            if (cmbSearchBy.getValue().equals("Name")) {
-                List<UserDTO> userDTOS = userBo.searchUserByName(txtSearch.getText());
-                tblUser.getItems().clear();
-                for (UserDTO userDTO : userDTOS) {
-                    tblUser.getItems().add(new UserTm(userDTO.getEmail(), userDTO.getName(), userDTO.getTelephone(), userDTO.getBranch().getLocation()));
-                }
-            } else if (cmbSearchBy.getValue().equals("Email")) {
-                UserDTO userDTO = userBo.searchUserByEmail(txtSearch.getText());
-                setToTable(userDTO);
-            } else if (cmbSearchBy.getValue().equals("Telephone")) {
-                UserDTO userDTO = userBo.searchUserByTelephone(txtSearch.getText());
-                setToTable(userDTO);
+            switch (searchby) {
+                case "Name":
+                    List<UserDTO> userDTOS = userBo.searchUserByName(txtSearch.getText());
+                    tblUser.getItems().clear();
+                    for (UserDTO userDTO : userDTOS) {
+                        tblUser.getItems().add(new UserTm(userDTO.getEmail(), userDTO.getName(), userDTO.getTelephone(), userDTO.getBranch().getLocation()));
+                    }
+                    break;
+                case "Email":
+                    UserDTO userDTO = userBo.searchUserByEmail(txtSearch.getText());
+                    setToTable(userDTO);
+                    break;
+                case "Telephone":
+                    UserDTO dto = userBo.searchUserByTelephone(txtSearch.getText());
+                    setToTable(dto);
+                    break;
             }
         }
         catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     private void setToTable(UserDTO userDTO) {
@@ -106,42 +110,27 @@ public class UserFormController {
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) {
-        String email = txtMail.getText();
-        String username = txtName.getText();
-        String telephone = txtTelephone.getText();
-        String branch = cmbBranch.getValue();
 
-
-/*
-        if (username.isEmpty() || branch.isEmpty() || telephone.isEmpty() || email.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "All fields are required").show();
-        } else {
-            try {
-                UserDTO search = userBo.search(email);
-                userBo.update(new UserDTO(username, email, search.getPassword(), Integer.parseInt(telephone), search.getBranch()));
-                new Alert(Alert.AlertType.CONFIRMATION, "Updated").show();
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
+        if(Regex.getNamePattern().matcher(txtName.getText()).matches()){
+            if(Regex.getMobilePattern().matcher(txtTelephone.getText()).matches()){
+                if (txtName.getText().isEmpty() || txtMail.getText().isEmpty() || txtTelephone.getText().isEmpty() || cmbBranch.getValue().isEmpty()) {
+                    new Alert(Alert.AlertType.ERROR, "All fields are required").show();
+                } else {
+                    try {
+                        BranchDTO branchDTO = branchBo.searchByLocation(cmbBranch.getValue());
+                        UserDTO search = userBo.search(txtMail.getText());
+                        userBo.update(new UserDTO(txtName.getText(),txtMail.getText(),search.getPassword(), Integer.parseInt(txtTelephone.getText()), branchDTO));
+                        new Alert(Alert.AlertType.CONFIRMATION, "Updated").show();
+                        clearFields();
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Invalid Mobile Number").show();
             }
-        }*/
-
-
-
-
-
-
-        if (txtName.getText().isEmpty() || txtMail.getText().isEmpty() || txtTelephone.getText().isEmpty() || cmbBranch.getValue().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "All fields are required").show();
         } else {
-            try {
-                BranchDTO branchDTO = branchBo.searchByLocation(cmbBranch.getValue());
-                UserDTO search = userBo.search(txtMail.getText());
-                userBo.update(new UserDTO(txtName.getText(),txtMail.getText(),search.getPassword(), Integer.parseInt(txtTelephone.getText()), branchDTO));
-                new Alert(Alert.AlertType.CONFIRMATION, "Updated").show();
-                clearFields();
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
+            new Alert(Alert.AlertType.ERROR, "Invalid Name").show();
         }
     }
 

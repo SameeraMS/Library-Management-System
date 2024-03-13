@@ -16,6 +16,7 @@ import org.example.bo.custom.impl.AdminBOImpl;
 import org.example.dto.AdminDTO;
 import org.example.dto.BranchDTO;
 import org.example.dto.UserDTO;
+import org.example.regex.Regex;
 
 import java.io.IOException;
 import java.net.URL;
@@ -64,33 +65,47 @@ public class RegisterFormController {
         String rePassword = txtRePassword.getText();
         int tel = Integer.parseInt(txtTel.getText());
 
-        if (username.isEmpty() || email.isEmpty() || password.isEmpty() || rePassword.isEmpty() || type.isEmpty() || txtTel.getText().isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "All fields are required").show();
-        } else if (!password.equals(rePassword)) {
-            new Alert(Alert.AlertType.ERROR, "Password does not match").show();
-        } else {
+        if(Regex.getEmailPattern().matcher(txtEmail.getText()).matches()){
+            if (Regex.getNamePattern().matcher(txtUsername.getText()).matches()) {
+               if (Regex.getMobilePattern().matcher(txtTel.getText()).matches()){
 
-            if (type.equals("User")) {
-                if (cmbBranch.getValue() == null) {
-                    new Alert(Alert.AlertType.ERROR, "Please select branch").show();
-                } else {
-                    try {
-                        BranchDTO branchDTO = branchBO.searchByLocation(cmbBranch.getValue());
-                        userBoImpl.save(new UserDTO(username, email, password,tel, branchDTO));
-                        new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
-                    } catch (SQLException | ClassNotFoundException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
+                   if (username.isEmpty() || email.isEmpty() || password.isEmpty() || rePassword.isEmpty() || type.isEmpty() || txtTel.getText().isEmpty()) {
+                       new Alert(Alert.AlertType.ERROR, "All fields are required").show();
+                   } else if (!password.equals(rePassword)) {
+                       new Alert(Alert.AlertType.ERROR, "Password does not match").show();
+                   } else {
 
+                       if (type.equals("User")) {
+                           if (cmbBranch.getValue() == null) {
+                               new Alert(Alert.AlertType.ERROR, "Please select branch").show();
+                           } else {
+                               try {
+                                   BranchDTO branchDTO = branchBO.searchByLocation(cmbBranch.getValue());
+                                   userBoImpl.save(new UserDTO(username, email, password,tel, branchDTO));
+                                   new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
+                               } catch (SQLException | ClassNotFoundException e) {
+                                   throw new RuntimeException(e);
+                               }
+                           }
+
+                       } else {
+                           try {
+                               adminBoImpl.save(new AdminDTO(username, email,tel, password));
+                               new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
+                           } catch (Exception e) {
+                               new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+                           }
+                       }
+                   }
+
+               }else{
+                   new Alert(Alert.AlertType.ERROR, "Invalid Mobile Number").show();
+               }
             } else {
-                try {
-                    adminBoImpl.save(new AdminDTO(username, email,tel, password));
-                    new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
-                } catch (Exception e) {
-                    new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-                }
+                new Alert(Alert.AlertType.ERROR, "Invalid Username").show();
             }
+        }else{
+            new Alert(Alert.AlertType.ERROR, "Invalid Email").show();
         }
     }
 

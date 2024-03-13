@@ -8,6 +8,7 @@ import org.example.bo.BOFactory;
 import org.example.bo.custom.BranchBO;
 import org.example.dto.BranchDTO;
 import org.example.dto.tm.BranchTm;
+import org.example.regex.Regex;
 
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -123,16 +124,32 @@ public class BranchFormController {
         String email = txtEmail.getText();
         String address = txtAddress.getText();
 
-        if (id.isEmpty() || location.isEmpty() || telephone.isEmpty() || email.isEmpty() || address.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "All fields are required").show();
-        } else {
-            try {
-                branchBoImpl.save(new BranchDTO(id, location, Integer.parseInt(telephone), email, address));
-                new Alert(Alert.AlertType.CONFIRMATION, "Saved").show();
-                initialize();
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
+        if(Regex.getMobilePattern().matcher(txtTelephone.getText()).matches()){
+            if(Regex.getEmailPattern().matcher(txtEmail.getText()).matches()){
+                if(Regex.getAddressPattern().matcher(txtAddress.getText()).matches()){
+                    if(Regex.getNamePattern().matcher(txtLocation.getText()).matches()){
+                        if (id.isEmpty() || location.isEmpty() || telephone.isEmpty() || email.isEmpty() || address.isEmpty()) {
+                            new Alert(Alert.AlertType.ERROR, "All fields are required").show();
+                        } else {
+                            try {
+                                branchBoImpl.save(new BranchDTO(id, location, Integer.parseInt(telephone), email, address));
+                                new Alert(Alert.AlertType.CONFIRMATION, "Saved").show();
+                                initialize();
+                            } catch (SQLException | ClassNotFoundException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }else{
+                        new Alert(Alert.AlertType.ERROR, "Invalid location").show();
+                    }
+                }else{
+                    new Alert(Alert.AlertType.ERROR, "Invalid address").show();
+                }
+            } else{
+                new Alert(Alert.AlertType.ERROR, "Invalid email").show();
             }
+        }else{
+            new Alert(Alert.AlertType.ERROR, "Invalid mobile number").show();
         }
     }
 
@@ -143,16 +160,33 @@ public class BranchFormController {
         String email = txtEmail.getText();
         String address = txtAddress.getText();
 
-        if (id.isEmpty() || location.isEmpty() || telephone.isEmpty() || email.isEmpty() || address.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "All fields are required").show();
-        } else {
-            try {
-                branchBoImpl.update(new BranchDTO(id, location, Integer.parseInt(telephone), email, address));
-                new Alert(Alert.AlertType.CONFIRMATION, "Updated").show();
-                initialize();
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
+
+        if(Regex.getMobilePattern().matcher(txtTelephone.getText()).matches()){
+            if(Regex.getEmailPattern().matcher(txtEmail.getText()).matches()){
+                if(Regex.getAddressPattern().matcher(txtAddress.getText()).matches()){
+                    if(Regex.getNamePattern().matcher(txtLocation.getText()).matches()){
+                        if (id.isEmpty() || location.isEmpty() || telephone.isEmpty() || email.isEmpty() || address.isEmpty()) {
+                            new Alert(Alert.AlertType.ERROR, "All fields are required").show();
+                        } else {
+                            try {
+                                branchBoImpl.update(new BranchDTO(id, location, Integer.parseInt(telephone), email, address));
+                                new Alert(Alert.AlertType.CONFIRMATION, "Updated").show();
+                                initialize();
+                            } catch (SQLException | ClassNotFoundException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }else{
+                        new Alert(Alert.AlertType.ERROR, "Invalid location").show();
+                    }
+                }else{
+                    new Alert(Alert.AlertType.ERROR, "Invalid address").show();
+                }
+            } else{
+                new Alert(Alert.AlertType.ERROR, "Invalid email").show();
             }
+        }else{
+            new Alert(Alert.AlertType.ERROR, "Invalid mobile number").show();
         }
     }
 

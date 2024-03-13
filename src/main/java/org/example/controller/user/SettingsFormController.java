@@ -10,6 +10,7 @@ import org.example.bo.custom.BranchBO;
 import org.example.bo.custom.UserBO;
 import org.example.dto.BranchDTO;
 import org.example.dto.UserDTO;
+import org.example.regex.Regex;
 
 import java.sql.SQLException;
 
@@ -61,15 +62,23 @@ public class SettingsFormController {
             throw new RuntimeException(e);
         }
 
-        if (username.isEmpty() || branch.isEmpty() || telephone.isEmpty()) {
-            new Alert(Alert.AlertType.ERROR, "All fields are required").show();
-        } else {
-            try {
-                userBOImpl.update(new UserDTO(username, email, userdto.getPassword(), Integer.parseInt(telephone), userdto.getBranch()));
-                new Alert(Alert.AlertType.CONFIRMATION, "Updated").show();
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RuntimeException(e);
+        if(Regex.getNamePattern().matcher(txtUsername.getText()).matches()){
+            if(Regex.getMobilePattern().matcher(txtTelephone.getText()).matches()){
+                if (username.isEmpty() || branch.isEmpty() || telephone.isEmpty()) {
+                    new Alert(Alert.AlertType.ERROR, "All fields are required").show();
+                } else {
+                    try {
+                        userBOImpl.update(new UserDTO(username, email, userdto.getPassword(), Integer.parseInt(telephone), userdto.getBranch()));
+                        new Alert(Alert.AlertType.CONFIRMATION, "Updated").show();
+                    } catch (SQLException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }else{
+                new Alert(Alert.AlertType.ERROR, "Invalid mobile number").show();
             }
+        }else{
+            new Alert(Alert.AlertType.ERROR, "Invalid name").show();
         }
     }
 
