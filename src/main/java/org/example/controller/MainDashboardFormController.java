@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lombok.Setter;
+import org.example.controller.admin.DashboardFormController;
 import org.example.controller.user.BookFormController;
 import org.example.controller.user.SettingsFormController;
 import org.example.controller.user.UserBorrowFormController;
@@ -32,8 +33,7 @@ public class MainDashboardFormController {
     @Setter
     private String type;
 
-    public void initialize() {
-        changeForm("/view/admin/dashboard_form.fxml");
+    public void initialize() throws SQLException, IOException, ClassNotFoundException {
         lblWho.setVisible(false);
         String text = lblWho.getText();
         btnBranch.setVisible(true);
@@ -49,6 +49,7 @@ public class MainDashboardFormController {
                 btnUser.setVisible(false);
                 break;
         }
+        dashboardOnAction(new ActionEvent());
     }
 
 
@@ -84,8 +85,16 @@ public class MainDashboardFormController {
         }
     }
 
-    public void dashboardOnAction(ActionEvent actionEvent) {
-        changeForm("/view/admin/dashboard_form.fxml");
+    public void dashboardOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/admin/dashboard_form.fxml"));
+        Parent main = fxmlLoader.load();
+
+        DashboardFormController dash =  fxmlLoader.getController();
+        dash.setEmail(email);
+        dash.initialize();
+
+        changePain.getChildren().clear();
+        changePain.getChildren().add(main);
     }
 
     public void logOutOnAction(ActionEvent actionEvent) throws IOException {

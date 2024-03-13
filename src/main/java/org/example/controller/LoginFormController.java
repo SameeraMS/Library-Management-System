@@ -91,7 +91,7 @@ public class LoginFormController {
         }
     }
 
-    public void login(String name, String status) throws IOException {
+    public void login(String name, String status) throws IOException, SQLException, ClassNotFoundException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("/view/mainDashboard_form.fxml"));
         Parent main = fxmlLoader.load();
