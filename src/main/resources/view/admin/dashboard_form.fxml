@@ -1,14 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.controller.admin.DashboardFormController"
-            prefHeight="764.0" prefWidth="1025.0">
-
+<AnchorPane prefHeight="764.0" prefWidth="1025.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.admin.DashboardFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#73cd52" height="124.0" layoutX="35.0" layoutY="186.0" opacity="0.74" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 40; -fx-arc-width: 40;" width="214.0" />
+      <Label layoutX="810.0" layoutY="7.0" text="Hello..!">
+         <font>
+            <Font name="Arial Black" size="53.0" />
+         </font>
+      </Label>
+      <Label layoutX="727.0" layoutY="61.0" opacity="0.5" text="Welcome Back">
+         <font>
+            <Font name="Arial Black" size="35.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="26.0" fitWidth="21.0" layoutX="9.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assests/images/icons/icons8-home-100.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="35.0" layoutY="7.0" text="/ Borrow Books">
+         <font>
+            <Font name="Arial Black" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="873.0" layoutY="107.0" prefHeight="31.0" prefWidth="141.0" text="2024-03-13">
+         <font>
+            <Font name="Times New Roman Bold" size="28.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d87da" height="124.0" layoutX="280.0" layoutY="186.0" opacity="0.74" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 40; -fx-arc-width: 40;" width="214.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da8f2d" height="124.0" layoutX="530.0" layoutY="186.0" opacity="0.74" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 40; -fx-arc-width: 40;" width="214.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ee5752" height="124.0" layoutX="774.0" layoutY="186.0" opacity="0.74" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-arc-height: 40; -fx-arc-width: 40;" width="214.0" />
+      <Label layoutX="51.0" layoutY="263.0" text="Registered Members" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="17.0" />
+         </font></Label>
+      <Label layoutX="295.0" layoutY="263.0" text="Total Books" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="548.0" layoutY="263.0" text="Our Branches" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="793.0" layoutY="263.0" text="You Read Books" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMemberCount" layoutX="51.0" layoutY="215.0" text="10">
+         <font>
+            <Font name="Arial Black" size="38.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblBookCount" layoutX="295.0" layoutY="215.0" text="10">
+         <font>
+            <Font name="Arial Black" size="38.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblBranchCount" layoutX="546.0" layoutY="215.0" text="10">
+         <font>
+            <Font name="Arial Black" size="38.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblReadBookCount" layoutX="793.0" layoutY="215.0" text="10">
+         <font>
+            <Font name="Arial Black" size="38.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="348.0" text="Famouse Books:">
+         <font>
+            <Font name="Arial Black" size="16.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblBook" layoutX="169.0" layoutY="382.0" prefHeight="348.0" prefWidth="651.0" stylesheets="@../../styles/table.css">
+         <columns>
+            <TableColumn prefWidth="130.0" text="ID" />
+            <TableColumn prefWidth="188.0" text="Title" />
+            <TableColumn prefWidth="172.0" text="Author" />
+            <TableColumn prefWidth="160.0" text="Genre" />
+         </columns>
+      </TableView>
+   </children>
 </AnchorPane>
