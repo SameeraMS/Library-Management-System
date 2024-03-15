@@ -74,7 +74,7 @@
                      </image>
                   </ImageView>
                </graphic></JFXButton>
-            <JFXButton buttonType="RAISED" graphicTextGap="119.0" layoutX="12.0" layoutY="208.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#UserbooksOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Books">
+            <JFXButton fx:id="btnBooks" buttonType="RAISED" graphicTextGap="119.0" layoutX="12.0" layoutY="208.0" nodeOrientation="RIGHT_TO_LEFT" onAction="#UserbooksOnAction" prefHeight="62.0" prefWidth="340.0" styleClass="dashboard" stylesheets="@../styles/button.css" text="Books">
                <graphic>
                   <ImageView fitHeight="38.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                      <image>

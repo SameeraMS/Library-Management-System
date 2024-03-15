@@ -27,6 +27,7 @@ public class MainDashboardFormController {
     public JFXButton btnBookManage;
     public JFXButton btnBranch;
     public JFXButton btnUser;
+    public JFXButton btnBooks;
     @Setter
     private String email;
 
@@ -42,6 +43,7 @@ public class MainDashboardFormController {
         switch (text) {
             case "Admin":
                 btnSettings.setVisible(false);
+                btnBooks.setVisible(false);
                 break;
             default:
                 btnBranch.setVisible(false);

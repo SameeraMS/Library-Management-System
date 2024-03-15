@@ -7,9 +7,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import lombok.Setter;
+import org.example.util.Mail;
+
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Random;
 
 public class ForgotPass2FormController {
@@ -23,6 +24,13 @@ public class ForgotPass2FormController {
     public void initialize() {
         otp = new Random().nextInt(900000) + 100000;
         System.out.println(otp);
+        /*Mail mail = new Mail();
+        mail.setMsg("Your OTP is " + otp);
+        mail.setTo(email);
+        mail.setSubject("Library Management System");
+
+        Thread thread = new Thread(mail);
+        thread.start();*/
     }
     public void btnSubmitOnAction(ActionEvent actionEvent) {
         if (txtOtp.getText().isEmpty()) {

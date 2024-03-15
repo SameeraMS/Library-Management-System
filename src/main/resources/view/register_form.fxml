@@ -52,5 +52,6 @@
             <Cursor fx:constant="HAND" />
          </cursor></ComboBox>
       <TextField fx:id="txtTel" layoutX="394.0" layoutY="250.0" onAction="#telOnAction" prefHeight="46.0" prefWidth="303.0" promptText="Telephone" styleClass="signup" stylesheets="@../styles/textfield.css" />
+      <TextField fx:id="txtAdminCode" layoutX="394.0" layoutY="411.0" prefHeight="36.0" prefWidth="303.0" promptText="Enter Admin Code" styleClass="signup" stylesheets="@../styles/textfield.css" />
    </children>
 </AnchorPane>

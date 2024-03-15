@@ -31,6 +31,8 @@ public class RegisterFormController {
     public TextField txtRePassword;
     public ComboBox<String> cmbBranch;
     public TextField txtTel;
+    public TextField txtAdminCode;
+    public String adminCode = "1234";
 
     AdminBO adminBoImpl = (AdminBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ADMIN);
     UserBO userBoImpl = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
@@ -39,6 +41,7 @@ public class RegisterFormController {
     public void initialize() {
         cmbType.getItems().addAll("Admin", "User");
         cmbBranch.setVisible(false);
+        txtAdminCode.setVisible(false);
 
         try {
             for (BranchDTO branchDTO : branchBO.getAll()) {
@@ -90,8 +93,12 @@ public class RegisterFormController {
 
                        } else {
                            try {
-                               adminBoImpl.save(new AdminDTO(username, email,tel, password));
-                               new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
+                               if (txtAdminCode.getText().equals(adminCode)) {
+                                   adminBoImpl.save(new AdminDTO(username, email,tel, password));
+                                   new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
+                               } else {
+                                   new Alert(Alert.AlertType.ERROR, "Invalid Admin Code").show();
+                               }
                            } catch (Exception e) {
                                new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
                            }
@@ -124,7 +131,9 @@ public class RegisterFormController {
     public void cmbTypeOnAction(ActionEvent actionEvent) {
         if (cmbType.getValue().equals("User")) {
             cmbBranch.setVisible(true);
+            txtAdminCode.setVisible(false);
         } else {
+            txtAdminCode.setVisible(true);
             cmbBranch.setVisible(false);
         }
     }
