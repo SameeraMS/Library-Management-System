@@ -92,4 +92,17 @@ public class BookBOImpl implements BookBO {
 
         return list1;
     }
+
+    @Override
+    public List<BookDTO> searchOnTime(String title, String branch) throws SQLException, ClassNotFoundException {
+        List<Book> list = bookDaoImpl.searchOnTime(title, branch);
+        List<BookDTO> list1 = new ArrayList<>();
+
+        for (Book book:list) {
+            BookDTO bookDTO = new BookDTO(book.getId(), book.getTitle(), book.getAuthor(), book.getGenre(), book.getStatus(), new BranchDTO(book.getBranch().getId(), book.getBranch().getLocation(), book.getBranch().getTelephone(), book.getBranch().getEmail(), book.getBranch().getAddress()));
+            list1.add(bookDTO);
+        }
+
+        return list1;
+    }
 }

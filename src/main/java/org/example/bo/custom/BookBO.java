@@ -21,4 +21,5 @@ public interface BookBO extends SuperBO {
     String generateNextId() throws SQLException, ClassNotFoundException;
     List<BookDTO> searchByTitle(String title, String branch) throws SQLException, ClassNotFoundException;
     List<BookDTO> searchByBranch(String branch) throws SQLException, ClassNotFoundException;
+    List<BookDTO> searchOnTime(String title, String branch) throws SQLException, ClassNotFoundException;
 }

@@ -111,4 +111,16 @@ public class BookDAOImpl implements BookDAO {
 
         return book;
     }
+
+    @Override
+    public List<Book> searchOnTime(String title, String branch) throws SQLException, ClassNotFoundException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<Book> book = session.createQuery("FROM Book WHERE branch.id = :branch AND title LIKE :titles", Book.class)
+                .setParameter("branch", branch).setParameter("titles",title+"%").list();
+        transaction.commit();
+        session.close();
+
+        return book;
+    }
 }

@@ -27,7 +27,7 @@
             <Image url="@../../assests/images/icons/icons8-home-100.png" />
          </image>
       </ImageView>
-      <Label layoutX="35.0" layoutY="7.0" text="/ Borrow Books">
+      <Label layoutX="35.0" layoutY="7.0" text="/ Dashboard">
          <font>
             <Font name="Arial Black" size="17.0" />
          </font>

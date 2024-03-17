@@ -6,6 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.example.bo.BOFactory;
 import org.example.bo.custom.BookBO;
@@ -84,7 +85,11 @@ public class BookMangeFormController {
     }
 
     public void txtSearchOnAction(ActionEvent actionEvent) {
-        searchBook();
+        if (cmbBranch.getValue() == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Branch First").show();
+        } else {
+            searchBook();
+        }
     }
 
     private void searchBook() {
@@ -196,6 +201,26 @@ public class BookMangeFormController {
             cmbBranch.setValue(search.getBranch().getLocation());
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void searchOnTimeOnAction(KeyEvent event) {
+        String title = txtSearch.getText();
+        String branch = cmbSelectBranch.getValue();
+
+        if (branch == null) {
+            new Alert(Alert.AlertType.ERROR, "Select Branch First").show();
+        } else {
+            try {
+                BranchDTO dto = branchBOImpl.searchByLocation(branch);
+                List<BookDTO> all = bookBOImpl.searchOnTime(title, dto.getId());
+                tblBooks.getItems().clear();
+                for (BookDTO bookDTO : all) {
+                    tblBooks.getItems().add(new BookTm(bookDTO.getId(), bookDTO.getTitle(), bookDTO.getAuthor(), bookDTO.getStatus()));
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
