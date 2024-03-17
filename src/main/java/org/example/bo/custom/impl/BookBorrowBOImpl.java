@@ -22,12 +22,23 @@ public class BookBorrowBOImpl implements BookBorrowBO {
         bookEnt.setStatus("Not Available");
 
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
+        try{
+            Transaction transaction = session.beginTransaction();
 
-        session.persist(borrowBooks);
-        session.update(bookEnt);
+            session.persist(borrowBooks);
+            session.update(bookEnt);
 
-        transaction.commit();
-        session.close();
+            transaction.commit();
+            session.close();
+        }catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 }

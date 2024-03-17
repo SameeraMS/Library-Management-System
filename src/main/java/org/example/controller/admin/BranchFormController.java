@@ -134,6 +134,7 @@ public class BranchFormController {
                             try {
                                 branchBoImpl.save(new BranchDTO(id, location, Integer.parseInt(telephone), email, address));
                                 new Alert(Alert.AlertType.CONFIRMATION, "Saved").show();
+                                clearFields();
                                 initialize();
                             } catch (SQLException | ClassNotFoundException e) {
                                 throw new RuntimeException(e);
@@ -151,6 +152,13 @@ public class BranchFormController {
         }else{
             new Alert(Alert.AlertType.ERROR, "Invalid mobile number").show();
         }
+    }
+
+    private void clearFields() {
+        txtLocation.clear();
+        txtTelephone.clear();
+        txtEmail.clear();
+        txtAddress.clear();
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
@@ -171,6 +179,7 @@ public class BranchFormController {
                             try {
                                 branchBoImpl.update(new BranchDTO(id, location, Integer.parseInt(telephone), email, address));
                                 new Alert(Alert.AlertType.CONFIRMATION, "Updated").show();
+                                clearFields();
                                 initialize();
                             } catch (SQLException | ClassNotFoundException e) {
                                 throw new RuntimeException(e);
@@ -198,6 +207,7 @@ public class BranchFormController {
             try {
                 branchBoImpl.delete(id);
                 new Alert(Alert.AlertType.CONFIRMATION, "Deleted").show();
+                clearFields();
                 initialize();
             } catch (SQLException | ClassNotFoundException e) {
                 new Alert(Alert.AlertType.ERROR, "Something went wrong").show();

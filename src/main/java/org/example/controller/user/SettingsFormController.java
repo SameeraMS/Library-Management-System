@@ -70,6 +70,7 @@ public class SettingsFormController {
                     try {
                         userBOImpl.update(new UserDTO(username, email, userdto.getPassword(), Integer.parseInt(telephone), userdto.getBranch()));
                         new Alert(Alert.AlertType.CONFIRMATION, "Updated").show();
+                        clearFields();
                     } catch (SQLException | ClassNotFoundException e) {
                         throw new RuntimeException(e);
                     }
@@ -103,12 +104,21 @@ public class SettingsFormController {
                 new Alert(Alert.AlertType.ERROR, "Password does not match").show();
             } else {
                 try {
-                    userBOImpl.save(new UserDTO(userdto.getName(), email, newPw, userdto.getTelephone(), userdto.getBranch()));
+                    userBOImpl.update(new UserDTO(userdto.getName(), email, newPw, userdto.getTelephone(), userdto.getBranch()));
                     new Alert(Alert.AlertType.CONFIRMATION, "Changed Password Successfully").show();
+                    clearFields();
                 } catch (SQLException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
             }
         }
+    }
+
+    private void clearFields() {
+        txtCurrentPW.clear();
+        txtNewPW.clear();
+        txtNewPW2.clear();
+        txtUsername.clear();
+        txtTelephone.clear();
     }
 }
