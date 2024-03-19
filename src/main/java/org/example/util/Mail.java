@@ -34,7 +34,7 @@ public class Mail implements Runnable{
     }
 
     public void outMail() throws MessagingException, IOException {
-        String from = "animalhospitalpanadura@gmail.com"; //sender's email address
+        String from = "sameera.royalseven@gmail.com"; //sender's email address
         String host = "localhost";
 
         Properties properties = new Properties();
@@ -46,7 +46,7 @@ public class Mail implements Runnable{
 
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("animalhospitalpanadura@gmail.com", "bwcv okms wptv uyxp");  // have to change some settings in SMTP
+                return new PasswordAuthentication("sameera.royalseven@gmail.com", "kmhr kkqo xamm acqr");  // have to change some settings in SMTP
             }
         });
 

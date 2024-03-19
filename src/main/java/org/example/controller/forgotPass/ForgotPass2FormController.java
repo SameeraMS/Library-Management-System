@@ -24,13 +24,17 @@ public class ForgotPass2FormController {
     public void initialize() {
         otp = new Random().nextInt(900000) + 100000;
         System.out.println(otp);
-        /*Mail mail = new Mail();
+
+    }
+
+    public void start(){
+        Mail mail = new Mail();
         mail.setMsg("Your OTP is " + otp);
         mail.setTo(email);
         mail.setSubject("Library Management System");
 
         Thread thread = new Thread(mail);
-        thread.start();*/
+        thread.start();
     }
     public void btnSubmitOnAction(ActionEvent actionEvent) {
         if (txtOtp.getText().isEmpty()) {

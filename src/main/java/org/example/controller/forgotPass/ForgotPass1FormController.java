@@ -50,6 +50,7 @@ public class ForgotPass1FormController {
 
         ForgotPass2FormController f2 =  fxmlLoader.getController();
         f2.setEmail(email);
+        f2.start();
 
         root.getChildren().clear();
         root.getChildren().add(main);
