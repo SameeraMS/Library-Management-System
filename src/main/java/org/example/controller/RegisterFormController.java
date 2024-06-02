@@ -94,7 +94,7 @@ public class RegisterFormController {
                        } else {
                            try {
                                if (txtAdminCode.getText().equals(adminCode)) {
-                                   adminBoImpl.save(new AdminDTO(username, email,tel, password));
+                                   adminBoImpl.save(new AdminDTO(email, username,tel, password));
                                    new Alert(Alert.AlertType.CONFIRMATION, "Register Successful").show();
                                } else {
                                    new Alert(Alert.AlertType.ERROR, "Invalid Admin Code").show();
